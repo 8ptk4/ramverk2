@@ -2,7 +2,7 @@ import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faAddressCard, faListAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCashRegister, faHome, faAddressCard, faListAlt } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -38,6 +38,12 @@ const NavigationBar = () => (
                             <Nav.Link href="/#/about">
                                 <FontAwesomeIcon icon={faAddressCard} />
                                 <span /> About    
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link href="/#/register">
+                                <FontAwesomeIcon icon={faCashRegister} />
+                                <span /> Register
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
