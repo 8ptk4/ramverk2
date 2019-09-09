@@ -7,9 +7,7 @@ import Router from './components/Router';
 
 const App = () => (
     <>  
-        <header>
-            <Header />
-        </header>
+        <Header />
         <main class="container">
             <div class="row">
                 <div class="col-md-12">
