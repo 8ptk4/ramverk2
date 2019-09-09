@@ -15,10 +15,7 @@ const App = () => (
                 </div>
             </div>
         </main>
-        <footer class="page-footer font-small cyan darken-3">
-            <Footer />
-        </footer>
-        
+        <Footer />
     </>
 );
 

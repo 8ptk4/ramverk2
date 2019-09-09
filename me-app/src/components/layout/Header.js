@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import NavigationBar from "../views/NavigationBar";
 import Background from "../../assets/images/beach.png";
+import SunRay from "../../assets/images/sunrays.png";
 
 /*
     HEADER ELEMENT STYLE
@@ -71,6 +72,10 @@ const NavStyle = styled.nav`
     .active {
         color: #E65950 !important;
     }
+
+    .navbar {
+        z-index: 1;
+    }
 `;
 
 /*
@@ -114,23 +119,39 @@ const WaveAnimation = styled.g`
     }
 `;
 
-
+const SunRays = styled.div`
+    background: url(${SunRay}) 0 0 no-repeat;
+	position: absolute; 
+	top: -500px; 
+	left: 900px; 
+	width: 1000px; 
+	height: 1000px; 
+	
+	/* microsoft ie */
+	animation-name: spin; 
+	animation-duration: 40000ms; /* 40 seconds */
+	animation-iteration-count: infinite; 
+    animation-timing-function: linear;
+    
+    @keyframes spin {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+`;
 
 const Header = () => (
     <>
         <HeaderStyle>
             <NavStyle>
                 <NavigationBar />
+                <SunRays></SunRays>
                 <SiteLogo>Patrik Karlsson</SiteLogo>
             </NavStyle>
-            
             <div>
                 <Waves viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-                
                     <defs>
                         <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
                     </defs>
-                    
                     <WaveAnimation>
                         <use href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
                         <use href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />

@@ -26,6 +26,7 @@ const Styles = styled.div`
 
 const Footer = () => (
     <>
+        <footer class="page-footer font-small cyan darken-3">
         <Styles class="container">
             <div class="row">
                 <div class="col-md-12 py-5">
@@ -56,6 +57,7 @@ const Footer = () => (
                 <div class="footer-copyright text-center py-3">© 2019 Copyright Patrik Karlsson
             </div>
         </Styles>
+        </footer>
     </>
 );
 
