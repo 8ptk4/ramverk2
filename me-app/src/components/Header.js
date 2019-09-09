@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import NavigationBar from "./NavigationBar";
 import Background from "../assets/images/beach.png";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faAddressCard, faListAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Styles = styled.div`
     header {
@@ -78,6 +76,20 @@ const Styles = styled.div`
         0 5px 10px rgba(0,0,0,.25),
         0 10px 10px rgba(0,0,0,.2),
         0 20px 20px rgba(0,0,0,.15);
+    }
+
+
+
+    @media (max-width: 830px) {
+        .title {
+            font-size: 6em;
+        }
+    }
+
+    @media (max-width: 628px) {
+        .title {
+            font-size: 4em;
+        }
     }
 `;
 

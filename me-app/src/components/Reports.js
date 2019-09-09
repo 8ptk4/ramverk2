@@ -22,6 +22,15 @@ section {
 h1 {
   color: grey;
 }
+
+blockquote {
+  border-left: 7px solid lightgrey;
+  background: rgba(204,204,204,0.2);
+}
+
+blockquote p {
+  padding: 10px;
+}
 `;
 
 

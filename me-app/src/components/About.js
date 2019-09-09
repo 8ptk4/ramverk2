@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import Get from "../assets/images/get.jpg";
+import Get from "../assets/images/putte.png";
 
 const Styles = styled.div`
     section {
-        width: 800px;
-        margin: 0 auto;
-
         img {
             border: 2px solid grey;
+            margin: 10px;
         }
     }
     
@@ -29,7 +27,7 @@ const About = () => {
                 <h1>About</h1>
                 <hr />
                 <div class="section-wrapper">
-                    <img src={Get} class="img-fluid float-right" alt="Responsive image"></img>
+                    <img src={Get} class="img-fluid float-right w-50" alt="Goat muuuuuU"></img>
                         <p>Det är jag som är Patrik Karlsson, en 33 årig kille från Flen i Södermanland. Var väldigt idrottintresserad 
                         som yngre, utövade både innebandy, fotboll och bordtennis. Slutade dock med lagsporter och satsade allt på 
                         bordtennisen. Uppnådde väl inga större prestationer men lyckades bli en utbildad steg ett tränare och fick 

@@ -15,6 +15,10 @@ const Styles = styled.div`
     .fa-2x:hover {
         color: #ffbfae;
     }
+
+    .row {
+        margin: 0 !important;
+    }
 `;
 
 const Footer = () => {
@@ -22,7 +26,7 @@ const Footer = () => {
         <Styles class="container">
             <div class="row">
                 <div class="col-md-12 py-5">
-                    <div class="mb-5 d-flex justify-content-center">
+                    <div class="d-flex justify-content-center">
                         <a class="fb-ic" href="https://www.facebook.com/putte.putte.75">
                             <i class="fa-lg white-text mr-md-5 mr-3 fa-2x"> 
                                 <FontAwesomeIcon icon={faFacebook} color="#e6594f" size="2x" />
