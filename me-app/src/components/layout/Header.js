@@ -14,7 +14,6 @@ const Styles = styled.div`
     }
 
     .inner-header {
-        height:25vh;
         width:100%;
         margin: 0;
         padding: 0;
@@ -90,6 +89,11 @@ const Styles = styled.div`
         .title {
             font-size: 4em;
         }
+    }
+
+    .nav-link:hover,
+    .navbar-brand:hover {
+        color: #E65950 !important;
     }
 `;
 
