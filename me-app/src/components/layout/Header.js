@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import NavigationBar from "../NavigationBar";
+import NavigationBar from "../views/NavigationBar";
 import Background from "../../assets/images/beach.png";
 
 const Styles = styled.div`
@@ -113,7 +113,7 @@ const Header = () => (
                 </nav>
                 
                 <div>
-                    <svg class="waves" xmlns="http://www.w3.org/2000/svg" href="http://www.w3.org/1999/xlink"
+                    <svg class="waves" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
                     
                         <defs>

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Get from "../assets/images/putte.png";
+import Get from "../../assets/images/putte.png";
 
 const Styles = styled.div`
     section {
@@ -16,7 +16,7 @@ const Styles = styled.div`
     }
 
     h1 {
-        color: grey;
+        color: #E65950;
     }
 `;
 

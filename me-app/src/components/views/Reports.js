@@ -1,6 +1,6 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import MarkdownFile from "./reports/week/one/Readme.md";
+import MarkdownFile from "../README.md";
 import styled from "styled-components";
 
 
@@ -20,7 +20,7 @@ section {
 }
 
 h1 {
-  color: grey;
+  color: #E65950;
 }
 
 blockquote {
