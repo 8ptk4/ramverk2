@@ -41,7 +41,7 @@ const NavigationBar = () => (
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="/#/reports">
+                            <Nav.Link href="/#/reports/week/1">
                                 <FontAwesomeIcon icon={faListAlt} />
                                 <span /> Reports
                             </Nav.Link>
