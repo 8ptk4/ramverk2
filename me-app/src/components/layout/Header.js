@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import NavigationBar from "./NavigationBar";
-import Background from "../assets/images/beach.png";
+import NavigationBar from "../NavigationBar";
+import Background from "../../assets/images/beach.png";
 
 const Styles = styled.div`
     header {
@@ -80,27 +80,27 @@ const Styles = styled.div`
 
 
 
-    @media (max-width: 830px) {
+    @media (max-width: 873px) {
         .title {
             font-size: 6em;
         }
     }
 
-    @media (max-width: 628px) {
+    @media (max-width: 673px) {
         .title {
             font-size: 4em;
         }
     }
 `;
 
-const Header = () => {
-    return (
+const Header = () => (
+    <>
         <Styles>
             <header>
                 <nav>
                     <div class="inner-header flex">
                         <NavigationBar />
-                        <p class="title">Patrik Karlsson</p>
+                        <span class="title">Patrik Karlsson</span>
                     </div>
                 </nav>
                 
@@ -122,7 +122,7 @@ const Header = () => {
                 </div>
             </header>
         </Styles>
-    );
-}
+    </>
+);
 
 export default Header;

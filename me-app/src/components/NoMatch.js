@@ -16,15 +16,15 @@ const Styles = styled.div`
 
 
 
-const NoMatch = () => {
-    return (
-        <Styles>
-            <div class="pageNotFound-wrapper text-center">
-                <h1 class="pageNotFound">4o4</h1>
-                <h3>Page not found!</h3>
-            </div>
-        </Styles>
-    );
-}
+const NoMatch = () => (
+    <Styles>
+        <div class="pageNotFound-wrapper text-center">
+            <h1 class="pageNotFound">4o4</h1>
+            <h3>Page not found!</h3>
+        </div>
+    </Styles>
+);
+
+
 
 export default NoMatch;

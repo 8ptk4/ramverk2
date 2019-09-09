@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 
+
 const Styles = styled.div`
     background-color: white;
     color: grey;
@@ -21,8 +22,10 @@ const Styles = styled.div`
     }
 `;
 
-const Footer = () => {
-    return (
+
+
+const Footer = () => (
+    <>
         <Styles class="container">
             <div class="row">
                 <div class="col-md-12 py-5">
@@ -53,7 +56,8 @@ const Footer = () => {
                 <div class="footer-copyright text-center py-3">© 2019 Copyright Patrik Karlsson
             </div>
         </Styles>
-    );
-}
+    </>
+);
+
 
 export default Footer;
