@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import NavigationBar from "../views/NavigationBar";
 import Background from "../../assets/images/beach.png";
-import SunRay from "../../assets/images/sunrays.png";
 
 /*
     HEADER ELEMENT STYLE
@@ -119,32 +118,13 @@ const WaveAnimation = styled.g`
     }
 `;
 
-const SunRays = styled.div`
-    background: url(${SunRay}) 0 0 no-repeat;
-	position: absolute; 
-	top: -500px; 
-	left: 900px; 
-	width: 1000px; 
-	height: 1000px; 
-	
-	/* microsoft ie */
-	animation-name: spin; 
-	animation-duration: 40000ms; /* 40 seconds */
-	animation-iteration-count: infinite; 
-    animation-timing-function: linear;
-    
-    @keyframes spin {
-	from { transform: rotate(0deg); }
-	to { transform: rotate(360deg); }
-}
-`;
+
 
 const Header = () => (
     <>
         <HeaderStyle>
             <NavStyle>
                 <NavigationBar />
-                <SunRays></SunRays>
                 <SiteLogo>Patrik Karlsson</SiteLogo>
             </NavStyle>
             <div>
