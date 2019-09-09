@@ -93,6 +93,10 @@ const Styles = styled.div`
 
     .nav-link:hover,
     .navbar-brand:hover {
+        color: #5BB7B6 !important;
+    }
+
+    .active {
         color: #E65950 !important;
     }
 `;
