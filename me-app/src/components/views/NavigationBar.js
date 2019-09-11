@@ -27,7 +27,7 @@ const NavigationBar = () => (
     <>
         <Styles>
             <Navbar expand="lg">
-                <Navbar.Brand href="/#/">
+                <Navbar.Brand href="/">
                     <FontAwesomeIcon icon={faHome} />
                     <span /> Home
                 </Navbar.Brand>
@@ -35,19 +35,19 @@ const NavigationBar = () => (
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
                         <Nav.Item>
-                            <Nav.Link href="/#/about">
+                            <Nav.Link href="/about">
                                 <FontAwesomeIcon icon={faAddressCard} />
                                 <span /> About    
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="/#/register">
+                            <Nav.Link href="/register">
                                 <FontAwesomeIcon icon={faCashRegister} />
                                 <span /> Register
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="/#/reports/week/1">
+                            <Nav.Link href="/reports/week/1">
                                 <FontAwesomeIcon icon={faListAlt} />
                                 <span /> Reports
                             </Nav.Link>

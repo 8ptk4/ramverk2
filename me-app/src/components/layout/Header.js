@@ -53,6 +53,13 @@ const SiteLogo = styled.p`
     0 5px 10px rgba(0,0,0,.25),
     0 10px 10px rgba(0,0,0,.2),
     0 20px 20px rgba(0,0,0,.15);
+
+
+    @media (max-width: 507px) {
+        .title {
+            font-size: 3em;
+        }
+    }
 `;
 
 /*
@@ -125,7 +132,7 @@ const Header = () => (
         <HeaderStyle>
             <NavStyle>
                 <NavigationBar />
-                <SiteLogo>Patrik Karlsson</SiteLogo>
+                <SiteLogo className="title">Patrik Karlsson</SiteLogo>
             </NavStyle>
             <div>
                 <Waves viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">

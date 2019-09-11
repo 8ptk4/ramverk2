@@ -4,18 +4,25 @@ import DatePicker from '../Datepicker';
 
 
 
-const Styles = styled.div`
+const Section = styled.section`
 
 `;
 
 
 
-const Register = () => (
-    <Styles>
-        <h1>Register</h1>
-        <DatePicker />
-    </Styles>
-);
+const Register = ({updateTitle}) => {
+    React.useEffect(() => {
+        updateTitle('Register');
+    }, [updateTitle]);
+
+    return (
+        <>
+            <Section>
+            Under construction...
+            </Section>
+        </>
+    );
+};
 
 
 

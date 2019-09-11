@@ -2,31 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import Get from "../../assets/images/putte.png";
 
-const Styles = styled.div`
-    section {
-        img {
-            border: 2px solid grey;
-            margin: 10px;
-        }
-    }
-    
-    .section-wrapper {
-        padding: 10px;
-        color: grey;
-    }
 
-    h1 {
-        color: #E65950;
-    }
-`;
 
-const About = () => (
-    <Styles>
-        <section >
-            <h1>About</h1>
-            <hr />
-            <div class="section-wrapper">
-                <img src={Get} class="img-fluid float-right w-50" alt="Goat muuuuuU"></img>
+const About = ({updateTitle}) => {
+    React.useEffect(() => {
+        updateTitle('About');
+    }, [updateTitle]);
+
+    return (
+        <>
+            <section>
+                <img src={Get} className="img-fluid float-right w-50" alt="Goat muuuuuU"></img>
                     <p>Det är jag som är Patrik Karlsson, en 33 årig kille från Flen i Södermanland. Var väldigt idrottintresserad 
                     som yngre, utövade både innebandy, fotboll och bordtennis. Slutade dock med lagsporter och satsade allt på 
                     bordtennisen. Uppnådde väl inga större prestationer men lyckades bli en utbildad steg ett tränare och fick 
@@ -47,10 +33,9 @@ const About = () => (
                     handels i resten utav mitt liv.</p>
 
                     <p>Och här befinner jag mig nu studerande webbprogrammering på Blekinge Tekniska Högskola.</p>
-                <hr />
-            </div>
-        </section>
-    </Styles>
-);
+            </section>
+        </>
+    );
+};
 
 export default About;

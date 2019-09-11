@@ -4,7 +4,7 @@ import MarkdownFile from "../README.md";
 import styled from "styled-components";
 
 
-const Styles = styled.div`
+const Section = styled.section`
 section {
   width: 800px;
   margin: 0 auto;
@@ -35,7 +35,11 @@ blockquote p {
 
 
 
-const Reports = () => {
+const Reports = ({updateTitle}) => {
+  React.useEffect(() => {
+    updateTitle('Reports');
+  }, [updateTitle]);
+
   const [markdown, setMarkdown] = React.useState("");
 
   React.useEffect(() => {
@@ -45,11 +49,11 @@ const Reports = () => {
   });
 
   return (
-    <Styles>
-      <ReactMarkdown source={markdown}/>
-    </Styles>
+      <Section>
+        <ReactMarkdown source={markdown} />
+      </Section>
   );
-}
+};
 
 
 
