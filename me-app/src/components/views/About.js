@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import Get from "../../assets/images/putte.png";
 
 
