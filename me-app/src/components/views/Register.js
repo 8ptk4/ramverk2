@@ -28,8 +28,12 @@ const DateYear = styled.div`
     }
 
     span {
+        display: flex;
         margin: 10px;
         padding: 10px;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
     }
 `;
 
@@ -39,6 +43,12 @@ const DatePicker = styled.div`
     justify-content: space-between;
 `;
 
+const FormStyle = styled.form`
+    button {
+        margin-top: 30px;
+    }
+`;
+
 
 const INITIAL_STATE = {
     name: "",
@@ -46,37 +56,94 @@ const INITIAL_STATE = {
     password: ""
 };
 
+const monthsArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 
-const Register = ({updateTitle}) => {
+const Register = (props) => {
     React.useEffect(() => {
-        updateTitle('Register');
-    }, [updateTitle]);
+        props.updateTitle('Register');
+    }, [props.updateTitle]);
 
     const { handleSubmit, handleChange, handleBlur, values, errors, isSubmitting } = useFormValidation(INITIAL_STATE, validateAuth);
-    //..................................................................
-    /*
-    function daysInMonth(month, year) {
-        return new Date(year, month, 0).getDate(); 
-    }
     
-    var date = new Date();
-    var month = 2;
-    var year = 2019;
-    console.log("Number of days in " + month
-        + "nd month of the year " + year
-        + " is " + daysInMonth(month, year));
-    */
-    const backspaceLongPress = useLongPress(props.longPressBackspaceCallback, 500);
-    const [year, setYear] = useState(2019);
+    const getMonth = () => {
+        const newDate = new Date();
+        const month = newDate.getMonth();
 
-    //..................................................................
+        return parseInt(month) + 1;
+    };
+
+    const getDay = () => {
+        const newDate = new Date();
+        const day = newDate.getDate();
+
+        return parseInt(day);
+    };
+
+    const getDaysOfMonth = (currentMonth, currentYear) => {
+        const amountOfDays = new Date(currentYear, currentMonth, 0).getDate();
+        console.log("Number of days in " + currentMonth
+            + "nd month of the year " + currentYear
+            + " is " + amountOfDays);
+
+        return amountOfDays;
+    };
+
+    const [year, setYear] = useState(2019);
+    const [month, setMonth] = useState(getMonth());
+    const [day, setDay] = useState(getDay());
+    const [isPressed, setIsPressed] = useState(false);
+
+    const turnMonth = (current) => {
+        if (current < 1) {
+            setMonth(12)
+        } else if (current > 12) {
+            setMonth(1);
+        } else {
+            setMonth(current)
+        }
+
+        return (current)
+    }
+
+    const calculateNextMonth = (extraDay = 0) => {
+        switch (month + extraDay) {
+            case 11 + extraDay:
+                return 12;
+                break;
+            case 12 + extraDay:
+                return 1 + extraDay;
+                break;
+            default:
+                return (month + 1 + extraDay);
+        }
+    };
+
+    const calculatePreviousMonth = (extraDay = 0) => {
+        switch (month - extraDay) {
+            case 2 - extraDay:
+                return 1;
+                break;
+            case 1 - extraDay:
+                return 12 - extraDay;
+                break;
+            default:
+                return (month - 1 - extraDay);
+        }
+    };
+
+    const handleLongPress = (value = 1, callback = setYear) => () => {
+        callback(prevState => prevState + value);
+    };
+
+    const longPressHandlersPlus = useLongPress(handleLongPress(1));
+    const longPressHandlersMinus = useLongPress(handleLongPress(-1));
 
     return (
         <>
             <Section>
                 <div className="container">
-                    <form className="row" onSubmit={handleSubmit}>
+                    <FormStyle className="row" onSubmit={handleSubmit}>
                         <div className="col-sm">
                             <label>Name:</label>
                             <Form.Control 
@@ -119,29 +186,57 @@ const Register = ({updateTitle}) => {
                         </div>
                         <DatePicker className="col-sm">
                             <span>Datepicker: </span>
-                            <DateYear> 
-                                <span><FontAwesomeIcon {...backspaceLongPress} id="leftArrow" size="2x" onMouseDown={() => setYear(year - 4)} icon={faChevronLeft} /></span>
-                                <span>{year -1}</span>
+                            <DateYear>
+                                <span>
+                                    <FontAwesomeIcon 
+                                        onClick={() => setYear(year - 1)}
+                                        id="leftArrow" 
+                                        icon={faChevronLeft}
+                                        {...longPressHandlersMinus}
+                                    />
+                                </span>
+                                <span>{(year - 1)}</span>
                                 <span className="active">{year}</span>
-                                <span>{year +1}</span>
-                                <span><FontAwesomeIcon size="2x" onClick={() => setYear(year + 1)} icon={faChevronRight} /></span>
+                                <span>{year + 1}</span>
+                                <span>
+                                    <FontAwesomeIcon
+                                        onClick={() => setYear(year + 1)} 
+                                        icon={faChevronRight}
+                                        {...longPressHandlersPlus}
+                                    />
+                                </span>
                             </DateYear>
                             <DateYear>
-                                <span><FontAwesomeIcon icon={faChevronLeft} /></span>
-                                <span>Jan</span>
-                                <span>Feb</span>
-                                <span className="active">Mar</span>
-                                <span>Apr</span>
-                                <span>May</span>
-                                <span><FontAwesomeIcon icon={faChevronRight} /></span>
+                                <span>
+                                    <FontAwesomeIcon 
+                                        icon={faChevronLeft}
+                                        onClick={() => turnMonth(month - 1)}
+                                    />
+                                </span>
+
+                                <span>{calculatePreviousMonth()}</span>
+                                <span className="active">{month}</span>
+                                <span>{calculateNextMonth()}</span>
+   
+                                <span>
+                                    <FontAwesomeIcon 
+                                        icon={faChevronRight}
+                                        onClick={() => turnMonth(month + 1)}
+                                    />
+                                </span>
                             </DateYear>
                             <DateYear>
-                                <span><FontAwesomeIcon icon={faChevronLeft} /></span>
-                                <span>01</span>
-                                <span>02</span>
-                                <span className="active">03</span>
-                                <span>04</span>
-                                <span>05</span>
+                                <span>
+                                    <FontAwesomeIcon 
+                                        icon={faChevronLeft} 
+                                    
+                                    />
+                                </span>
+                                <span>{day - 2}</span>
+                                <span>{day - 1}</span>
+                                <span className="active">{day}</span>
+                                <span>{day + 1}</span>
+                                <span>{day + 2}</span>
                                 <span><FontAwesomeIcon icon={faChevronRight} /></span>
                             </DateYear>
                         </DatePicker>
@@ -151,7 +246,7 @@ const Register = ({updateTitle}) => {
                             disabled={isSubmitting}
                             block>Submit
                         </Button>
-                    </form> 
+                    </FormStyle> 
                 </div>
             </Section>
         </>

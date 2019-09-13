@@ -1,20 +1,31 @@
 import { useState, useEffect } from 'react';
 
-export default function useLongPress(callback = () => { }, ms = 300) {
+const limitSteps = 100;
+const delaySteps = 150;
+
+export default function useLongPress(callback = () => { }, ms = 500) {
     const [startLongPress, setStartLongPress] = useState(false);
+    const [delay, setDelay] = useState(ms);
 
     useEffect(() => {
         let timerId;
         if (startLongPress) {
-            timerId = setTimeout(callback, ms);
+            timerId = setInterval(() => {
+                callback();
+
+                if (delay > limitSteps) {
+                    setDelay(prevState => prevState - delaySteps);
+                }
+            }, delay);
         } else {
-            clearTimeout(timerId);
+            clearInterval(timerId);
+            setDelay(() => ms);
         }
 
         return () => {
-            clearTimeout(timerId);
+            clearInterval(timerId);
         };
-    }, [startLongPress]);
+    }, [startLongPress, delay]);
 
     return {
         onMouseDown: () => setStartLongPress(true),
