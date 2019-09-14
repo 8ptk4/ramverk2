@@ -31,10 +31,15 @@ const DateYear = styled.div`
 
     .active {
         outline: 2px solid #E85A50
+        box-shadow: 0 0 10px #E85A50;
+        background: #E85A50;
+        color: white;
+        font-size: 1.2em;
     }
 
     span {
         display: flex;
+        width: 25%;
         margin: 10px;
         padding: 10px;
         justify-content: center;
@@ -63,6 +68,20 @@ const FormStyle = styled.form`
         float: right;
         color: black;
     }
+
+    .arrow {       
+        svg {
+            margin: 0 auto;
+        }
+    }
+
+    .arrow:hover {
+        cursor: pointer;
+
+        svg {
+            color: #E85A50 !important;
+        }
+    }
 `;
 
 
@@ -78,10 +97,12 @@ const Register = (props) => {
         props.updateTitle('Register');
     }, [props.updateTitle]);
 
-    const { handleSubmit, handleChange, handleBlur, values, errors, isSubmitting } = useFormValidation(INITIAL_STATE, validateAuth);
-    
-    const newDate = new Date();
 
+    /**
+     * Get todays month number.
+     * 
+     * @return {number} month number.
+     */
     const getMonth = () => {
         const month = newDate.getMonth();
 
@@ -89,39 +110,64 @@ const Register = (props) => {
     };
 
 
- 
+    /**
+     * Get todays day number.
+     * 
+     * @return {number} day number.
+     */
     const getDay = () => {
         const day = newDate.getDate();
 
         return parseInt(day);
     };
 
+    const newDate = new Date();
 
+    const { handleSubmit, handleChange, handleBlur, values, errors, isSubmitting } = useFormValidation(INITIAL_STATE, validateAuth);
+    const [year, setYear] = useState(2019);
+    const [month, setMonth] = useState(getMonth());
+    const [day, setDay] = useState(getDay());
+    
 
+    /**
+     * Get how many days there are in a specified month.
+     * 
+     * @param {number} currentMonth 
+     * @param {number} currentYear 
+     * @return {number} amount of days.
+     */
     const getDaysOfMonth = (currentMonth, currentYear) => {
         const amountOfDays = new Date(currentYear, currentMonth, 0).getDate();
 
         return amountOfDays;
     };
 
-    const [year, setYear] = useState(2019);
-    const [month, setMonth] = useState(getMonth());
-    const [day, setDay] = useState(getDay());
-    const [isPressed, setIsPressed] = useState(false);
 
-
+    /**
+     * 
+     * 
+     * @param {*} current
+     * @return {}
+     */
     const turnMonth = (current) => {
         if (current < 1) {
-            setMonth(12)
+            setMonth(12);
         } else if (current > 12) {
             setMonth(1);
         } else {
-            setMonth(current)
-        }
+            setMonth(current);
+        };
 
-        return (current)
-    }
+        return (current);
+    };
 
+    
+    /**
+     * Convert the current month number into its name.
+     * 
+     * @param {number} monthNr Number of the current month.
+     * @return {string} Current month name.
+     */
     const getMonthName = (monthNr) => {
         const monthArray = [
             'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
@@ -131,84 +177,105 @@ const Register = (props) => {
     }
 
     
-
+    /**
+     * 
+     * 
+     * @param {*} current 
+     * @param {*} total 
+     * @return {} 
+     */
     const turnDay = (current, total) => {
         total = getDaysOfMonth(month, year);
         if (current < 1) {
-            setDay(total)
+            setDay(total);
         } else if (current > total) {
             setDay(1);
         } else {
-            setDay(current)
-        }
+            setDay(current);
+        };
+        return (current);
+    };
 
-        return (current)
-    }
 
+    /**
+     * 
+     * @param {*} extraDay 
+     */
     const calculateNextMonth = (extraDay = 0) => {
         switch (month + extraDay) {
             case 11 + extraDay:
                 return 12;
-                break;
             case 12 + extraDay:
                 return 1 + extraDay;
-                break;
             default:
                 return (month + 1 + extraDay);
-        }
+        };
     };
 
+
+    /**
+     * 
+     * @param {*} extraDay 
+     */
     const calculatePreviousMonth = (extraDay = 0) => {
         switch (month - extraDay) {
             case 2 - extraDay:
                 return 1;
-                break;
             case 1 - extraDay:
                 return 12 - extraDay;
-                break;
             default:
                 return (month - 1 - extraDay);
         }
     };
 
     
-
+    /**
+     * 
+     * @param {*} extraDay 
+     */
     const calculateNextDay = (extraDay = 0) => {
         const total = getDaysOfMonth(month, year);
-        console.log("Day: ", day)
-        console.log(total)
+
         switch (day + extraDay) {
             case total - 1 + extraDay:
                 return total;
-                break;
             case total + extraDay:
                 return 1 + extraDay;
-                break;
             default:
                 return (day + 1);
         }
     };
 
+
+    /**
+     * 
+     * @param {*} extraDay 
+     */
     const calculatePreviousDay = (extraDay = 0) => {
         const total = getDaysOfMonth(month, year);
 
         switch (day - extraDay) {
             case 2 - extraDay:
                 return 1;
-                break;
             case 1 - extraDay:
                 return total - extraDay;
-                break;
             default:
                 return (day - 1);
         }
     };
 
 
+    /**
+     * 
+     * @param {*} value 
+     * @param {*} callback 
+     */
     const handleLongPress = (value = 1, callback = setYear) => () => {
         callback(prevState => prevState + value);
     };
 
+
+    
     const longPressHandlersPlus = useLongPress(handleLongPress(1));
     const longPressHandlersMinus = useLongPress(handleLongPress(-1));
     const longPressHandlersPlusDay = useLongPress(handleLongPress(1, setDay));
@@ -259,33 +326,32 @@ const Register = (props) => {
                         <DatePicker className="col-sm">
                             <label>Date of Birth</label>
                             <DateYear>
-                                <span>
-                                    <FontAwesomeIcon 
-                                        onClick={() => setYear(year - 1)}
+                                <span className="arrow" 
+                                    onClick={() => setYear(year - 1)}
+                                    {...longPressHandlersMinus}>  
+                                    <FontAwesomeIcon  
                                         id="leftArrow"
                                         size="2x"
                                         icon={faChevronLeft}
-                                        {...longPressHandlersMinus}
                                     />
                                 </span>
                                 <span>{(year - 1)}</span>
                                 <span className="active">{year}</span>
                                 <span>{year + 1}</span>
-                                <span>
+                                <span className="arrow"
+                                    onClick={() => setYear(year + 1)} 
+                                    {...longPressHandlersPlus}>
                                     <FontAwesomeIcon
                                         size="2x"
-                                        onClick={() => setYear(year + 1)} 
                                         icon={faChevronRight}
-                                        {...longPressHandlersPlus}
                                     />
                                 </span>
                             </DateYear>
                             <DateYear>
-                                <span>
+                                <span className="arrow" onClick={() => turnMonth(month - 1)}>
                                     <FontAwesomeIcon
                                         size="2x"
                                         icon={faChevronLeft}
-                                        onClick={() => turnMonth(month - 1)}
                                     />
                                 </span>
 
@@ -293,32 +359,31 @@ const Register = (props) => {
                                 <span className="active">{getMonthName(month)}</span>
                                 <span>{getMonthName(calculateNextMonth())}</span>
    
-                                <span>
+                                <span className="arrow" onClick={() => turnMonth(month + 1)}>
                                     <FontAwesomeIcon 
                                         size="2x"
                                         icon={faChevronRight}
-                                        onClick={() => turnMonth(month + 1)}
                                     />
                                 </span>
                             </DateYear>
                             <DateYear>
-                                <span>
+                                <span className="arrow"
+                                    onClick={() => turnDay(day - 1)}
+                                    {...longPressHandlersMinusDay}>
                                     <FontAwesomeIcon
                                         size="2x"
-                                        icon={faChevronLeft} 
-                                        onClick={() => turnDay(day - 1)}
-                                        {...longPressHandlersMinusDay}
+                                        icon={faChevronLeft}
                                     />
                                 </span>
                                 <span>{calculatePreviousDay()}</span>
                                 <span className="active">{day}</span>
                                 <span>{calculateNextDay()}</span>
-                                <span>
+                                <span className="arrow"
+                                    onClick={() => turnDay(day + 1)}
+                                    {...longPressHandlersPlusDay}>
                                     <FontAwesomeIcon 
                                         size="2x"
                                         icon={faChevronRight}
-                                        onClick={() => turnDay(day + 1)}
-                                        {...longPressHandlersPlusDay}
                                     />
                                 </span>
                             </DateYear>
