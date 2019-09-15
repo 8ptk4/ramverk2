@@ -14,9 +14,24 @@ export default function validateAuth(values) {
 
     // Password Errors
     if (!values.password) {
-        errors.password = 'Required Password'
+        errors.password = 'Required Password';
     } else if (values.password.length < 6) {
-        errors.password = 'Password must be at least 6 characters'
+        errors.password = 'Password must be at least 6 characters';
     }
+
+    if (!values.year) {
+        errors.year = 'Required Year';
+    } else if (values.year > 2019) {
+        errors.year = 'Year cant be higher than 2019';
+    }
+
+    if (!values.day) {
+        errors.day = 'Required Day';
+    }
+
+    if (!values.month) {
+        errors.month = 'Required month';
+    }
+
     return errors;
 }

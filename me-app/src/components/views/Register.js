@@ -17,6 +17,13 @@ const Section = styled.section`
         padding: 0;
         position: absolute;
     }
+
+    .error {
+        color: red;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
 `;
 
 const DateYear = styled.div`
@@ -88,7 +95,10 @@ const FormStyle = styled.form`
 const INITIAL_STATE = {
     name: "",
     email: "",
-    password: ""
+    password: "",
+    year: "",
+    month: "",
+    day: "",
 };
 
 
@@ -274,8 +284,10 @@ const Register = (props) => {
         callback(prevState => prevState + value);
     };
 
+    { values.year = year } 
+    { values.month = month }
+    { values.day = day }
 
-    
     const longPressHandlersPlus = useLongPress(handleLongPress(1));
     const longPressHandlersMinus = useLongPress(handleLongPress(-1));
     const longPressHandlersPlusDay = useLongPress(handleLongPress(1, setDay));
@@ -347,6 +359,7 @@ const Register = (props) => {
                                     />
                                 </span>
                             </DateYear>
+                            {errors.year && <span className="error">{errors.year}</span>}
                             <DateYear>
                                 <span className="arrow" onClick={() => turnMonth(month - 1)}>
                                     <FontAwesomeIcon
@@ -369,7 +382,8 @@ const Register = (props) => {
                             <DateYear>
                                 <span className="arrow"
                                     onClick={() => turnDay(day - 1)}
-                                    {...longPressHandlersMinusDay}>
+                                    {...longPressHandlersMinusDay}
+                                    value={values.email}>
                                     <FontAwesomeIcon
                                         size="2x"
                                         icon={faChevronLeft}
@@ -388,6 +402,7 @@ const Register = (props) => {
                                 </span>
                             </DateYear>
                         </DatePicker>
+                        
                         <Button 
                             variant="primary" 
                             type="submit"

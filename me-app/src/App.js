@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Reports from './components/views/Reports';
+import Inspiration from './components/views/Inspiration';
 import About from './components/views/About';
 import Register from './components/views/Register';
 import Playground from './components/views/Playground';
@@ -41,6 +42,7 @@ const App = () => {
                                 <Route path="/" exact render={props => <About {...props} updateTitle={setTitle} />}/>
                                 <Route path="/about" render={props=><About {...props} updateTitle={setTitle} />}/>
                                 <Route path="/reports/week/1" render={props => <Reports {...props} updateTitle={setTitle} />}/>
+                                <Route path="/reports/week/2" render={props => <Inspiration {...props} updateTitle={setTitle} />} />
                                 <Route path="/register" render={props => <Register {...props} updateTitle={setTitle} />}/>
                                 <Route path="/playground" render={props => <Playground {...props} updateTitle={setTitle} />} />
                                 <Route render={props => <NoMatch {...props} updateTitle={setTitle} />} />
