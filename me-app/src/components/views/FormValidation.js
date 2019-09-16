@@ -10,24 +10,20 @@ const useFormValidation = (initialState, validate) => {
             const noErrors = Object.keys(errors).length === 0;
 
             if (noErrors) {
-                validSubmit();
-                console.log("authenticated!");
+                alert(`
+                    Authenticated! Here are the values!
+                    
+                    Name: ${values.name}
+                    Email: ${values.email}
+                    Password: ${values.password}
+                    Birtday: ${values.year}/${values.month}/${values.day}
+                `);
                 setSubmitting(false);
             } else {
                 setSubmitting(false);
             }
         }
-    }, [errors]);
-
-    const validSubmit = () => {
-        alert(`
-        Authenticated! Here are the values!
-        
-        Name: ${values.name}
-        Email: ${values.email}
-        Password: ${values.password}
-        Birtday: ${values.year}/${values.month}/${values.day}`);
-    };
+    }, [errors, isSubmitting, values]);
 
     const handleChange = (event) => {
         setValues({

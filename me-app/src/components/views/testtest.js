@@ -25,7 +25,7 @@ export default function useLongPress(callback = () => { }, ms = 500) {
         return () => {
             clearInterval(timerId);
         };
-    }, [startLongPress, delay]);
+    }, [startLongPress, delay, callback, ms]);
 
     return {
         onMouseDown: () => setStartLongPress(true),

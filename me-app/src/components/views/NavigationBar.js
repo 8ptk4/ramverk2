@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCashRegister, faHome, faAddressCard, faListAlt } from '@fortawesome/free-solid-svg-icons';
@@ -41,22 +41,18 @@ const NavigationBar = () => (
                                 <span /> About    
                             </Nav.Link>
                         </Nav.Item>
+                        <NavDropdown title={<span><FontAwesomeIcon icon={faListAlt} /> Reports</span>} id="basic-nav-dropdown">
+                            <NavDropdown.Item href="/reports/week/1">
+                                Readme
+                            </NavDropdown.Item>
+                            <NavDropdown.Item href="/reports/week/2">
+                                Inspiration
+                            </NavDropdown.Item>
+                        </NavDropdown>
                         <Nav.Item>
                             <Nav.Link href="/register">
                                 <FontAwesomeIcon icon={faCashRegister} />
                                 <span /> Register
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="/reports/week/1">
-                                <FontAwesomeIcon icon={faListAlt} />
-                                <span /> Reports
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="/reports/week/2">
-                                <FontAwesomeIcon icon={faListAlt} />
-                                <span /> Inspiration
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
@@ -65,6 +61,7 @@ const NavigationBar = () => (
                                 <span /> Playground
                             </Nav.Link>
                         </Nav.Item>
+
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

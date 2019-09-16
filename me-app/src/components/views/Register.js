@@ -102,10 +102,10 @@ const INITIAL_STATE = {
 };
 
 
-const Register = (props) => {
+const Register = ({updateTitle}) => {
     React.useEffect(() => {
-        props.updateTitle('Register');
-    }, [props.updateTitle]);
+        updateTitle('Register');
+    }, [updateTitle]);
 
 
     /**
@@ -284,9 +284,9 @@ const Register = (props) => {
         callback(prevState => prevState + value);
     };
 
-    { values.year = year } 
-    { values.month = month }
-    { values.day = day }
+    values.year = year
+    values.month = month
+    values.day = day
 
     const longPressHandlersPlus = useLongPress(handleLongPress(1));
     const longPressHandlersMinus = useLongPress(handleLongPress(-1));
