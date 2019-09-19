@@ -2,7 +2,7 @@ import React from 'react';
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCashRegister, faHome, faAddressCard, faListAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCashRegister, faHome, faAddressCard, faListAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { faReact } from '@fortawesome/free-brands-svg-icons';
 
 
@@ -61,7 +61,12 @@ const NavigationBar = () => (
                                 <span /> Playground
                             </Nav.Link>
                         </Nav.Item>
-
+                        <Nav.Item>
+                            <Nav.Link href="/signin">
+                                <FontAwesomeIcon icon={faSignInAlt} />
+                                <span /> Sign in
+                            </Nav.Link>
+                        </Nav.Item>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

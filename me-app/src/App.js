@@ -8,6 +8,7 @@ import Inspiration from './components/views/Inspiration';
 import About from './components/views/About';
 import Register from './components/views/Register';
 import Playground from './components/views/Playground';
+import Signin from './components/views/Signin';
 import NoMatch from './components/views/NoMatch';
 import styled from "styled-components";
 
@@ -45,6 +46,7 @@ const App = () => {
                                 <Route path="/reports/week/2" render={props => <Inspiration {...props} updateTitle={setTitle} />} />
                                 <Route path="/register" render={props => <Register {...props} updateTitle={setTitle} />}/>
                                 <Route path="/playground" render={props => <Playground {...props} updateTitle={setTitle} />} />
+                                <Route path="/signin" render={props => <Signin {...props} updateTitle={setTitle} />} />
                                 <Route render={props => <NoMatch {...props} updateTitle={setTitle} />} />
                                 </Switch>
                             </BrowserRouter>
