@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCashRegister, faHome, faAddressCard, faListAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { faReact } from '@fortawesome/free-brands-svg-icons';
-
+import Popup from "reactjs-popup";
+import Signin from "./Signin";
 
 
 const Styles = styled.div`
@@ -19,6 +20,46 @@ const Styles = styled.div`
         &:hover {
             color: white !important;
         }
+    }
+`;
+
+
+const Modal = styled.div`
+    font-size: 12px;
+    color: grey;
+    
+    .header {
+        width: 100%;
+        border-bottom: 1px solid gray;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px;
+    }
+    
+    .content {
+        width: 100%;
+        padding: 10px 5px;
+    }
+
+    .actions {
+        width: 100%;
+        padding: 10px 5px;
+        margin: auto;
+        text-align: center;
+    }
+
+    .close {
+        cursor: pointer;
+        position: absolute;
+        display: block;
+        padding: 2px 5px;
+        line-height: 20px;
+        right: -10px;
+        top: -10px;
+        font-size: 24px;
+        background: #ffffff;
+        border-radius: 18px;
+        border: 1px solid #cfcece;
     }
 `;
 
@@ -62,10 +103,17 @@ const NavigationBar = () => (
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="/signin">
-                                <FontAwesomeIcon icon={faSignInAlt} />
-                                <span /> Sign in
-                            </Nav.Link>
+                            <Popup
+                                trigger={
+                                    <Nav.Link>
+                                        <FontAwesomeIcon icon={faSignInAlt} />
+                                        <span /> Sign in
+                                    </Nav.Link>
+                                } 
+                                modal
+                                closeOnDocumentClick>
+                                <Signin />
+                            </Popup>
                         </Nav.Item>
                     </Nav>
                 </Navbar.Collapse>
