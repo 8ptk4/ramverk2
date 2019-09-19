@@ -1,67 +1,71 @@
 import React from "react";
 import styled from 'styled-components';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
-const Modal = styled.div`
-    font-size: 12px;
-    color: grey;
-    
-    .header {
-        width: 100%;
-        border-bottom: 1px solid gray;
-        font-size: 18px;
-        text-align: center;
-        padding: 5px;
-    }
-    
-    .content {
-        width: 100%;
-        padding: 10px 5px;
+
+
+const FormStyle = styled.form`
+    button {
+        margin-top: 30px;
     }
 
-    .actions {
-        width: 100%;
-        padding: 10px 5px;
-        margin: auto;
-        text-align: center;
+    label {
+        color: black;
+        font-weight: bold;
     }
 
-    .close {
+    .secondary_label {
+        float: right;
+        color: black;
+    }
+
+    .arrow {       
+        svg {
+            margin: 0 auto;
+        }
+    }
+
+    .arrow:hover {
         cursor: pointer;
-        position: absolute;
-        display: block;
-        padding: 2px 5px;
-        line-height: 20px;
-        right: -10px;
-        top: -10px;
-        font-size: 24px;
-        background: #ffffff;
-        border-radius: 18px;
-        border: 1px solid #cfcece;
+
+        svg {
+            color: #E85A50 !important;
+        }
     }
 `;
 
 
 const Signin = () => {
     return (
-        <>
-            {close => (                        
-                <Modal>
-                    <a className="close" onClick={close}>
-                        &times;
-                    </a>
-                    <div className="header"> Modal Title </div>
-                    <div className="content">
-                        {" "}
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, a nostrum.
-                        Dolorem, repellat quidem ut, minima sint vel eveniet quibusdam voluptates
-                        delectus doloremque, explicabo tempore dicta adipisci fugit amet dignissimos?
+        <>             
+            <h1 className="header"> Sign in </h1>
+            <hr />
+            <div className="content">
+                <FormStyle className="row">
+                    <div className="col-sm">
+                        <label>Username</label>
+                        <Form.Control
+                            name="name"
+                            type="text"
+                            autoComplete="off"
+                        />
                         <br />
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur sit
-                        commodi beatae optio voluptatum sed eius cumque, delectus saepe repudiandae
-                        explicabo nemo nam libero ad, doloribus, voluptas rem alias. Vitae?
+                        <label>Password</label>
+                        <Form.Control
+                            name="email"
+                            type="email"
+                            autoComplete="off"
+                        />
+                        <br />
                     </div>
-                </Modal>
-            )}
+                    <Button
+                        variant="primary"
+                        type="submit"
+                        block>Submit
+                    </Button>
+                </FormStyle>
+            </div>
         </>
     );
 };

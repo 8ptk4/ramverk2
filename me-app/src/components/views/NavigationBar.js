@@ -27,25 +27,22 @@ const Styles = styled.div`
 const Modal = styled.div`
     font-size: 12px;
     color: grey;
+    width: none !important; 
     
     .header {
         width: 100%;
-        border-bottom: 1px solid gray;
-        font-size: 18px;
-        text-align: center;
-        padding: 5px;
-    }
-    
-    .content {
-        width: 100%;
-        padding: 10px 5px;
+        padding: 10px;
+        color: #E65950;
+        text-align: left;
     }
 
-    .actions {
-        width: 100%;
+    .popup-content {
+        width: 10% !important;
+    }
+
+    .content {
         padding: 10px 5px;
-        margin: auto;
-        text-align: center;
+        margin: 0 auto;
     }
 
     .close {
@@ -60,6 +57,17 @@ const Modal = styled.div`
         background: #ffffff;
         border-radius: 18px;
         border: 1px solid #cfcece;
+    }
+
+    button {
+        margin: 15px;
+    }
+
+    label {
+        width: 100%;
+        text-align: left;
+        color: black;
+        font-weight: bold;
     }
 `;
 
@@ -112,7 +120,14 @@ const NavigationBar = () => (
                                 } 
                                 modal
                                 closeOnDocumentClick>
-                                <Signin />
+                                {close => (
+                                    <Modal>
+                                        <button className="close" onClick={close}>
+                                            &times;
+                                        </button>
+                                        <Signin />
+                                    </Modal>
+                                )}
                             </Popup>
                         </Nav.Item>
                     </Nav>
