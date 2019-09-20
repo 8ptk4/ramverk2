@@ -1,13 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 
 
 const Playground = ({updateTitle}) => {
-    React.useEffect(() => {
+    useEffect(() => {
         updateTitle('Playground');
     }, [updateTitle]);
 
     const [count, setCount] = useState(0);
+    
+    const url = 'https://me-api.putte-karlsson.me';
+
+    fetch(url)
+        .then(response => {
+            return response;
+        })
+        .then(data => {
+            console.log('data:', data);
+        })
+        .catch(error => {
+            console.log('error:', error);
+        })
+    
 
     return (
         <>

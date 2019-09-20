@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 
-
 const FormStyle = styled.form`
     button {
         margin-top: 30px;
@@ -65,6 +64,7 @@ const Signin = () => {
                         block>Submit
                     </Button>
                 </FormStyle>
+                <a aria-current="page" href="/register">Register</a>
             </div>
         </>
     );

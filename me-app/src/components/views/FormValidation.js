@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const useFormValidation = (initialState, validate) => {
     const [values, setValues] = useState(initialState);
@@ -10,14 +11,24 @@ const useFormValidation = (initialState, validate) => {
             const noErrors = Object.keys(errors).length === 0;
 
             if (noErrors) {
-                alert(`
-                    Authenticated! Here are the values!
-                    
-                    Name: ${values.name}
-                    Email: ${values.email}
-                    Password: ${values.password}
-                    Birtday: ${values.year}/${values.month}/${values.day}
-                `);
+                console.log("authenticated")
+                const newUser = {
+                    username: `${values.name}`,
+                    email: `${values.email}`,
+                    personalNumber: `${values.year}/${values.month}/${values.day}`,
+                    password: `${values.password}`
+                }
+
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:8080/register/',
+                    data: newUser
+                })
+                    .then((response) => {
+                        console.log(response);
+                    }, (error) => {
+                        console.log(error);
+                    });
                 setSubmitting(false);
             } else {
                 setSubmitting(false);
