@@ -29,6 +29,7 @@ const useFormValidation = (initialState, validate) => {
                     }, (error) => {
                         console.log(error);
                     });
+                    
                 setSubmitting(false);
             } else {
                 setSubmitting(false);
