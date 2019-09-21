@@ -32,29 +32,28 @@ const App = () => {
     const [title, setTitle] = useState('Default');
     return ( 
         <>  
-            <Header />
-                <Main className="container">
-                    <div className="row">
-                        <div className="col-md-12">
-                            <h1>{title}</h1>
-                            <hr />
-                            <BrowserRouter>
-                                <Switch>
-                                <Route path="/" exact render={props => <About {...props} updateTitle={setTitle} />}/>
-                                <Route path="/about" render={props=><About {...props} updateTitle={setTitle} />}/>
-                                <Route path="/reports/week/1" render={props => <Reports {...props} updateTitle={setTitle} />}/>
-                                <Route path="/reports/week/2" render={props => <Inspiration {...props} updateTitle={setTitle} />} />
-                                <Route path="/register" render={props => <Register {...props} updateTitle={setTitle} />}/>
-                                <Route path="/playground" render={props => <Playground {...props} updateTitle={setTitle} />} />
-                                <Route path="/signin" render={props => <Signin {...props} updateTitle={setTitle} />} />
-                                <Route render={props => <NoMatch {...props} updateTitle={setTitle} />} />
-                                </Switch>
-                            </BrowserRouter>
-                            <hr />
+            <BrowserRouter>
+                <Header />
+                    <Main className="container">
+                        <div className="row">
+                            <div className="col-md-12">
+                                <h1>{title}</h1>
+                                <hr />
+                                    <Switch>
+                                        <Route path="/" exact render={props => <About {...props} updateTitle={setTitle} />}/>
+                                        <Route path="/about" render={props=><About {...props} updateTitle={setTitle} />}/>
+                                        <Route path="/reports/week/1" render={props => <Reports {...props} updateTitle={setTitle} />}/>
+                                        <Route path="/reports/week/2" render={props => <Inspiration {...props} updateTitle={setTitle} />} />
+                                        <Route path="/register" render={props => <Register {...props} updateTitle={setTitle} />}/>
+                                        <Route path="/playground" render={props => <Playground {...props} updateTitle={setTitle} />} />
+                                        <Route render={props => <NoMatch {...props} updateTitle={setTitle} />} />
+                                    </Switch>
+                                <hr />
+                            </div>
                         </div>
-                    </div>
-                </Main>
-            <Footer />
+                    </Main>
+                <Footer />
+            </BrowserRouter>
         </>
     );
 };

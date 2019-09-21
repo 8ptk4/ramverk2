@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import styled from 'styled-components';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import useFormSignIn from './UseFormSignIn'
 import axios from 'axios';
+import { tsConstructSignatureDeclaration } from "@babel/types";
 
 const FormStyle = styled.form`
     button {
@@ -41,24 +42,41 @@ const INITIAL_STATE = {
 };
 
 
-const Signin = () => {
+const Signin = (props) => {
 
     const { values, handleChange, handleSubmit } = useFormSignIn(INITIAL_STATE, login);
+    const [isLoading, setIsLoading] = useState(false);
 
     function login() {
-        axios({
-            method: 'post',
-            url: 'http://localhost:8080/login/',
-            data: {
-                email: values.email,
-                password: values.password
-            }
-        })
-            .then((response) => {
-                console.log(response);
-            }, (error) => {
-                console.log(error);
-            });
+        if (!isLoading) {
+            axios({
+                method: 'post',
+                url: 'http://localhost:8080/login/',
+                data: {
+                    email: values.email,
+                    password: values.password
+                }
+            })
+                .then(response => {
+                    setIsLoading(true);
+                    console.log("Response: ", response);
+                    localStorage.setItem("token", response.data.hemlighet);
+                    localStorage.setItem("username", response.data.username);
+                    props.closeMe();
+                    props.history.push('/about');
+                })
+                .catch(error => {
+                    setIsLoading(false);
+                    console.log(error.response);
+                    if (error.response) {
+                        console.log("Hej");
+                    } else if (error.request) {
+                        console.log("hehjehe");
+                    } else {
+                        console.log("tja");
+                    }
+                });
+        };
     };
     
     return (
@@ -93,7 +111,9 @@ const Signin = () => {
                     </Button>
                 </FormStyle>
 
-                <a aria-current="page" href="/register">Register</a>
+                <p>Don't have an account? 
+                    <a aria-current="page" href="/register"> Sign up here</a>
+                </p>
             </div>
         </>
     );

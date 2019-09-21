@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCashRegister, faHome, faAddressCard, faListAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCashRegister, faHome, faAddressCard, faListAlt, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faReact } from '@fortawesome/free-brands-svg-icons';
 import Popup from "reactjs-popup";
 import Signin from "./Signin";
@@ -11,7 +11,6 @@ import Signin from "./Signin";
 const Styles = styled.div`
     .navbar {
         background-color:rgba(255, 255, 255, 0.8);
-        border-bottom: 1px solid white;
     }
 
     .navbar-brand, .navbar-nav, .nav-link {
@@ -71,70 +70,117 @@ const Modal = styled.div`
     }
 `;
 
+const LoggedIn = styled.div`
+    background-color:rgba(255, 255, 255, 0.8);
+    color: black;
+    text-align: left;
+    padding: 5px;
+    padding-left: 10px;
+    border-bottom: 1px solid #E65950;
+
+    .logged-container {
+        
+        width: 100%;
+    }
+
+    .edit {
+        float: right;
+        padding-right: 20px;
+    }
+`;
 
 
-const NavigationBar = () => (
-    <>
-        <Styles>
-            <Navbar expand="lg">
-                <Navbar.Brand href="/">
-                    <FontAwesomeIcon icon={faHome} />
-                    <span /> Home
-                </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ml-auto">
-                        <Nav.Item>
-                            <Nav.Link href="/about">
-                                <FontAwesomeIcon icon={faAddressCard} />
-                                <span /> About    
-                            </Nav.Link>
-                        </Nav.Item>
-                        <NavDropdown title={<span><FontAwesomeIcon icon={faListAlt} /> Reports</span>} id="basic-nav-dropdown">
-                            <NavDropdown.Item href="/reports/week/1">
-                                Readme
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="/reports/week/2">
-                                Inspiration
-                            </NavDropdown.Item>
-                        </NavDropdown>
-                        <Nav.Item>
-                            <Nav.Link href="/register">
-                                <FontAwesomeIcon icon={faCashRegister} />
-                                <span /> Register
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="/playground">
-                                <FontAwesomeIcon icon={faReact} />
-                                <span /> Playground
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Popup
-                                trigger={
-                                    <Nav.Link>
-                                        <FontAwesomeIcon icon={faSignInAlt} />
-                                        <span /> Sign in
-                                    </Nav.Link>
-                                } 
-                                modal
-                                closeOnDocumentClick>
-                                {close => (
-                                    <Modal>
-                                        <button className="close" onClick={close}>
-                                            &times;
-                                        </button>
-                                        <Signin />
-                                    </Modal>
-                                )}
-                            </Popup>
-                        </Nav.Item>
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
-        </Styles>
-    </>
-)
+
+
+const NavigationBar = ({history}) => {
+    const [token, setToken] = useState(null);
+
+    const storage = localStorage.getItem('token');
+
+    useEffect(() => {
+        if (storage === null || storage.length === 0) {
+            setToken(null)
+        } else {
+            setToken(storage);
+        }
+    }, [storage]);
+
+    return (
+        <>
+            <Styles>
+                <Navbar expand="lg">
+                    <Navbar.Brand href="/">
+                        <FontAwesomeIcon icon={faHome} />
+                        <span /> Home
+                    </Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="ml-auto">
+                            <Nav.Item>
+                                <Nav.Link href="/about">
+                                    <FontAwesomeIcon icon={faAddressCard} />
+                                    <span /> About    
+                                </Nav.Link>
+                            </Nav.Item>
+                            <NavDropdown title={<span><FontAwesomeIcon icon={faListAlt} /> Reports</span>} id="basic-nav-dropdown">
+                                <NavDropdown.Item href="/reports/week/1">
+                                    Readme
+                                </NavDropdown.Item>
+                                <NavDropdown.Item href="/reports/week/2">
+                                    Inspiration
+                                </NavDropdown.Item>
+                            </NavDropdown>
+                            <Nav.Item>
+                                <Nav.Link href="/register">
+                                    <FontAwesomeIcon icon={faCashRegister} />
+                                    <span /> Register
+                                </Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link href="/playground">
+                                    <FontAwesomeIcon icon={faReact} />
+                                    <span /> Playground
+                                </Nav.Link>
+                            </Nav.Item>
+                            {token ? 
+                            <Nav.Item>
+                                    <Nav.Link onClick={() => { localStorage.removeItem('token'); setToken(null); }}>
+                                    <FontAwesomeIcon icon={faSignOutAlt} />
+                                    <span /> Sign out
+                                </Nav.Link>
+                            </Nav.Item>
+                            : 
+                            <Nav.Item >
+                                    <Popup
+                                        trigger={
+                                            <Nav.Link>
+                                                <FontAwesomeIcon icon={faSignInAlt} />
+                                                <span /> Sign in
+                                        </Nav.Link>
+                                        }
+                                        modal
+                                        closeOnDocumentClick>
+                                        {close => (
+                                            <Modal>
+                                                <button className="close" onClick={close}>
+                                                    &times;
+                                            </button>
+                                                <Signin history={history} closeMe={close} />
+                                            </Modal>
+                                        )}
+                                    </Popup>
+                            </Nav.Item>}
+                        </Nav>
+                    </Navbar.Collapse>
+                </Navbar>
+                {token ? 
+                <LoggedIn className="logged-container">
+                    <span>Logged in as: {localStorage.getItem('username')}</span>
+                    <span className="edit">Edit page</span>
+                </LoggedIn> : "" } 
+
+            </Styles>
+        </>    
+    )};
 
 export default NavigationBar;

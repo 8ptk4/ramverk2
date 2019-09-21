@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import NavigationBar from "../views/NavigationBar";
 import Background from "../../assets/images/beach.png";
+import { withRouter } from "react-router-dom";
 
 /*
     HEADER ELEMENT STYLE
@@ -127,11 +128,11 @@ const WaveAnimation = styled.g`
 
 
 
-const Header = () => (
+const Header = (props) => (
     <>
         <HeaderStyle>
             <NavStyle>
-                <NavigationBar />
+                <NavigationBar history={props.history} />
                 <SiteLogo className="title">Patrik Karlsson</SiteLogo>
             </NavStyle>
             <div>
@@ -151,4 +152,4 @@ const Header = () => (
     </>
 );
 
-export default Header;
+export default withRouter(Header);
