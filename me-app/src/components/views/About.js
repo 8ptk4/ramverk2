@@ -36,7 +36,7 @@ const About = (props) => {
 
     async function test() {
         try {
-            const response = await axios.get('http://localhost:8080/pages/about');
+            const response = await axios.get('https://me-api.putte-karlsson.me/pages/about');
             const aboutContent = response.data.about;
 
             
@@ -57,7 +57,7 @@ const About = (props) => {
     function handleSubmit(event) {
         event.preventDefault();
         console.log("OCH DENNA KÖRS!")
-        axios.post('http://localhost:8080/pages/about', { data: newData }, {
+        axios.post('https://me-api.putte-karlsson.me/pages/about', { data: newData }, {
             headers: { 'x-access-token': localStorage.getItem('token') }
         }).then(res => console.log(res)).catch(e => console.log(e.response));
 
