@@ -6,6 +6,7 @@ import { faCashRegister, faHome, faAddressCard, faListAlt, faSignInAlt, faSignOu
 import { faReact } from '@fortawesome/free-brands-svg-icons';
 import Popup from "reactjs-popup";
 import Signin from "./Signin";
+import LoggedIn from "./LoggedIn";
 
 
 const Styles = styled.div`
@@ -70,24 +71,7 @@ const Modal = styled.div`
     }
 `;
 
-const LoggedIn = styled.div`
-    background-color:rgba(255, 255, 255, 0.8);
-    color: black;
-    text-align: left;
-    padding: 5px;
-    padding-left: 10px;
-    border-bottom: 1px solid #E65950;
 
-    .logged-container {
-        
-        width: 100%;
-    }
-
-    .edit {
-        float: right;
-        padding-right: 20px;
-    }
-`;
 
 
 
@@ -173,12 +157,7 @@ const NavigationBar = ({history}) => {
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
-                {token ? 
-                <LoggedIn className="logged-container">
-                    <span>Logged in as: {localStorage.getItem('username')}</span>
-                    <span className="edit">Edit page</span>
-                </LoggedIn> : "" } 
-
+                {token ? <LoggedIn /> : "" } 
             </Styles>
         </>    
     )};

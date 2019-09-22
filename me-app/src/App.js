@@ -11,6 +11,7 @@ import Playground from './components/views/Playground';
 import Signin from './components/views/Signin';
 import NoMatch from './components/views/NoMatch';
 import styled from "styled-components";
+import LoggedIn from './components/views/LoggedIn';
 
 const Main = styled.main`
     img {
@@ -41,7 +42,7 @@ const App = () => {
                                 <hr />
                                     <Switch>
                                         <Route path="/" exact render={props => <About {...props} updateTitle={setTitle} />}/>
-                                        <Route path="/about" render={props=><About {...props} updateTitle={setTitle} />}/>
+                                        <Route path="/about" render={props=><About {...props} edit={true} updateTitle={setTitle} />}/>
                                         <Route path="/reports/week/1" render={props => <Reports {...props} updateTitle={setTitle} />}/>
                                         <Route path="/reports/week/2" render={props => <Inspiration {...props} updateTitle={setTitle} />} />
                                         <Route path="/register" render={props => <Register {...props} updateTitle={setTitle} />}/>

@@ -16,7 +16,7 @@ const Reports = ({updateTitle}) => {
   return (
     <>
       <Section>
-        <img src="https://cdn.dribbble.com/users/2297683/screenshots/5928095/daily_ui_080.png" class="img-fluid float-right" alt="Inspiration date picker"></img>
+        <img src="https://cdn.dribbble.com/users/2297683/screenshots/5928095/daily_ui_080.png" className="img-fluid float-right" alt="Inspiration date picker"></img>
         <p>After looking for inspirations for date pickers on dribble, I found one that got my interest. I managed to make my own date 
           picker almost like the one from dribble but with some differences in design.</p> 
 
