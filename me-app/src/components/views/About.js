@@ -34,7 +34,7 @@ const About = (props) => {
     const query = new URLSearchParams(props.location.search);
     const param = query.get('edit');
 
-    async function test() {
+    async function fetchData() {
         try {
             const response = await axios.get('https://me-api.putte-karlsson.me/pages/about');
             const aboutContent = response.data.about;
@@ -46,32 +46,27 @@ const About = (props) => {
         }
     }
 
-    function onResize(event) {
-        console.log(event.type); // -> "autosize:resized"
-    };
-
     function handleChange(event) {
         setNewData(event.target.value);
     };
 
     function handleSubmit(event) {
         event.preventDefault();
-        console.log("OCH DENNA KÖRS!")
+
         axios.post('https://me-api.putte-karlsson.me/pages/about', { data: newData }, {
             headers: { 'x-access-token': localStorage.getItem('token') }
         }).then(res => console.log(res)).catch(e => console.log(e.response));
 
     };
 
-    console.log("DENNA KÖRS!!")
-    test();
+    fetchData();
 
     return (
         <>
             { param === "yes" ?
                 <TextareaStyle>
                     <form className="row" onSubmit={handleSubmit}>
-                        <TextareaAutosize onResize={onResize} onChange={handleChange} defaultValue={data} name="textarea" />
+                        <TextareaAutosize onChange={handleChange} defaultValue={data} name="textarea" />
                         <input type="submit" value="Save" />
                     </form>
                 </TextareaStyle>

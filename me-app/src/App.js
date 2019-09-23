@@ -41,7 +41,7 @@ const App = () => {
                                 <hr />
                                     <Switch>
                                         <Route path="/" exact render={props => <About {...props} updateTitle={setTitle} />}/>
-                                        <Route path="/about" render={props=><About {...props} edit={true} updateTitle={setTitle} />}/>
+                                        <Route path="/about" render={props=><About {...props} updateTitle={setTitle} />}/>
                                         <Route path="/reports/week/1" render={props => <Reports {...props} updateTitle={setTitle} />}/>
                                         <Route path="/reports/week/2" render={props => <Inspiration {...props} updateTitle={setTitle} />} />
                                         <Route path="/register" render={props => <Register {...props} updateTitle={setTitle} />}/>
