@@ -106,6 +106,12 @@ const NavigationBar = ({history}) => {
                                     <span /> About    
                                 </Nav.Link>
                             </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link href="/create">
+                                    <FontAwesomeIcon icon={faAddressCard} />
+                                    <span /> Create
+                                </Nav.Link>
+                            </Nav.Item>
                             <NavDropdown title={<span><FontAwesomeIcon icon={faListAlt} /> Reports</span>} id="basic-nav-dropdown">
                                 <NavDropdown.Item href="/reports/week/1">
                                     Readme
