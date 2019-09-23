@@ -120,12 +120,6 @@ const NavigationBar = ({history}) => {
                                     <span /> Register
                                 </Nav.Link>
                             </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link href="/playground">
-                                    <FontAwesomeIcon icon={faReact} />
-                                    <span /> Playground
-                                </Nav.Link>
-                            </Nav.Item>
                             {token ? 
                             <Nav.Item>
                                     <Nav.Link onClick={() => { localStorage.removeItem('token'); setToken(null); }}>
