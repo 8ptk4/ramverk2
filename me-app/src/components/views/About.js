@@ -39,19 +39,20 @@ const About = (props) => {
             const response = await axios.get('https://me-api.putte-karlsson.me/pages/about');
             const aboutContent = response.data.about;
 
-            
             setData(aboutContent);
         } catch (e) {
             console.log(e);
         }
     }
 
-    function handleChange(event) {
-        setNewData(event.target.value);
+    function handleChange(e) {
+        const newData = e.target.value;
+
+        setNewData(newData);
     };
 
-    function handleSubmit(event) {
-        event.preventDefault();
+    function handleSubmit(e) {
+        e.preventDefault();
 
         axios.post('https://me-api.putte-karlsson.me/pages/about', { data: newData }, {
             headers: { 'x-access-token': localStorage.getItem('token') }
@@ -79,10 +80,3 @@ const About = (props) => {
 };
 
 export default About;
-
-/*
-<div className="Container" dangerouslySetInnerHTML={{
-    __html:
-        responseText.data
-}}></div>
-*/
