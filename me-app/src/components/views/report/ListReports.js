@@ -15,7 +15,7 @@ const ListReport = (props) => {
     const [items, setItems] = useState([]);
 
     const fetchItems = async () => {
-        const response = await axios.get('http://localhost:8080/titles');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/titles`);
         const items = await response.data;
 
         setItems(items.items);        

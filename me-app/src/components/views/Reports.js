@@ -41,7 +41,7 @@ const Reports = (props) => {
 
   async function fetchData() {
     try {
-      const response = await axios.get(`http://localhost:8080/reports/week/${props.match.params.title}`);
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/reports/week/${props.match.params.title}`);
       const aboutContent = response.data.about;
 
       setData(aboutContent);

@@ -21,7 +21,7 @@ const useFormValidation = (initialState, validate) => {
 
                 axios({
                     method: 'post',
-                    url: 'http://localhost:8080/register/',
+                    url: `${process.env.REACT_APP_BACKEND_URL}/register/`,
                     data: newUser
                 })
                     .then((response) => {
