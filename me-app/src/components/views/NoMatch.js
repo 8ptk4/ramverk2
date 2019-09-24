@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-
-
 const Section = styled.section`
     .pageNotFound {
         font-size: 10em;

@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 
-
-
 const LoggedInContainer = styled.div`
     background-color:rgba(255, 255, 255, 0.8);
     color: black;
@@ -28,19 +26,9 @@ const LoggedIn = (props) => {
         <>  
             <LoggedInContainer className="logged-container">
                 <span>Logged in as: {localStorage.getItem('username')}</span>
-                {props.location.pathname === "/about" ?
-                    <button onClick={() => props.history.push('/about?edit=yes')} className="edit">EDIT</button>
-                : "" }
             </LoggedInContainer> 
         </>
     );
 };
 
 export default withRouter(LoggedIn);
-
-/*
-<div className="Container" dangerouslySetInnerHTML={{
-    __html:
-        responseText.data
-}}></div>
-*/

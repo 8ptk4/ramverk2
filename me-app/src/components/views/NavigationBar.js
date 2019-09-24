@@ -7,6 +7,8 @@ import { faReact } from '@fortawesome/free-brands-svg-icons';
 import Popup from "reactjs-popup";
 import Signin from "./Signin";
 import LoggedIn from "./LoggedIn";
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 const Styles = styled.div`
@@ -77,8 +79,13 @@ const Modal = styled.div`
 
 
 const NavigationBar = ({history}) => {
-    const [token, setToken] = useState(null);
+    useEffect(() => {
+        fetchItems();
 
+        
+    }, []);
+
+    const [token, setToken] = useState(null);
     const storage = localStorage.getItem('token');
 
     useEffect(() => {
@@ -89,6 +96,17 @@ const NavigationBar = ({history}) => {
         }
     }, [storage]);
 
+    const [items, setItems] = useState([]);
+
+    const fetchItems = async () => {
+        const response = await axios.get('http://localhost:8080/titles');
+        const items = await response.data;
+
+        setItems(items.items);
+    };
+
+
+    console.log(items);
     return (
         <>
             <Styles>
@@ -107,25 +125,26 @@ const NavigationBar = ({history}) => {
                                 </Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link href="/create">
+                                <Nav.Link href="/reports/create">
                                     <FontAwesomeIcon icon={faAddressCard} />
                                     <span /> Create
                                 </Nav.Link>
                             </Nav.Item>
                             <NavDropdown title={<span><FontAwesomeIcon icon={faListAlt} /> Reports</span>} id="basic-nav-dropdown">
-                                <NavDropdown.Item href="/reports/week/1">
-                                    Readme
-                                </NavDropdown.Item>
-                                <NavDropdown.Item href="/reports/week/2">
-                                    Inspiration
-                                </NavDropdown.Item>
+                                {items.map(item => (
+                                    <li key={item.title}>
+                                        <Link to={`/reports/week/${item.title}`}> {item.title} </Link>
+                                    </li>
+                                ))}
                             </NavDropdown>
-                            <Nav.Item>
-                                <Nav.Link href="/register">
-                                    <FontAwesomeIcon icon={faCashRegister} />
-                                    <span /> Register
+                            {token ? 
+                                ""
+                            : <Nav.Item>
+                                    <Nav.Link href="/register">
+                                        <FontAwesomeIcon icon={faCashRegister} />
+                                        <span /> Register
                                 </Nav.Link>
-                            </Nav.Item>
+                                </Nav.Item> } 
                             {token ? 
                             <Nav.Item>
                                     <Nav.Link onClick={() => { localStorage.removeItem('token'); setToken(null); }}>

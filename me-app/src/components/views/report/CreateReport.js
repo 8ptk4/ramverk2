@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TextareaAutosize from 'react-autosize-textarea';
 import { Row, Col, Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-
+import ListReports from './ListReports';
+import axios from 'axios';
 
 const Section = styled.section`
     textarea {
@@ -19,15 +20,16 @@ const Section = styled.section`
     textarea:focus {
         border-radius: 5px !important;
         outline: none;
-        border: 1px solid #E85A50 !important;
+        border: 1px solid #2999A3 !important;
     }
 
     ul {
         list-style-type: none;
+        padding: 0;
     }
 
     .report_list {
-        border-right: 1px solid black;
+        border-right: 1px solid #C8C8C8;
     }
 
     .form_field {
@@ -38,11 +40,23 @@ const Section = styled.section`
 
     .form_field:focus {
         box-shadow: none !important;
-        border: 1px solid #E85A50;
+        border: 1px solid #2999A3;
     }
 
     .btn {
         width: 50%;
+        background-color: rgb(41, 153, 163);
+        color: white;
+        border: none;
+    }
+
+    button:hover {
+        background-color: rgb(41, 153, 163, 0.8);
+    }
+
+    h6 {
+        color: #E85A50;
+        font-weight: bold;
     }
 `;
 
@@ -56,19 +70,41 @@ const ReportList = styled.div`
 
 
 
-const CreateReport = ({ updateTitle }) => {
+const CreateReport = (props) => {
     React.useEffect(() => {
-        updateTitle('Create Report');
-    }, [updateTitle]);
+        props.updateTitle('Create report');
+    }, [props.updateTitle]);
 
-    const data = "testtest";
-
-    const handleChange = () => {
-
+    const INITIAL_VALUES = {
+        title: "",
+        content: "",
     };
 
-    const handleSubmit = () => {
+    const handleContentChange = (e) => {
+        INITIAL_VALUES.content = e.target.value;
+    };
 
+    const handleTitleChange = (e) => {
+        INITIAL_VALUES.title = e.target.value;
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/reports/`,
+            {
+                title: INITIAL_VALUES.title,
+                content: INITIAL_VALUES.content
+            }, {
+            headers: {
+                'x-access-token': localStorage.getItem('token')
+            }
+        })
+            .then(res => {
+                props.history.push(`/reports/week/${INITIAL_VALUES.title}`);
+                window.location.reload()
+            })
+            .catch(e => console.log(e.response));
     };
 
     return (
@@ -76,27 +112,21 @@ const CreateReport = ({ updateTitle }) => {
             <Section>
                 <Row>
                     <Col className="report_list" md={3}>
-                        <h6>Created Reports</h6>
-                        <ul>
-                            <li>report 1</li>
-                            <li>report 2</li>
-                            <li>report 3</li>
-                            <li>report 4</li>
-                        </ul>
-
+                        <ListReports />
                     </Col>
                     <Col md={{ span: 8, offset: 1 }}>
-                        <h3>New report</h3>
+                        <h3>Create new report</h3>
                         <form className="row" onSubmit={handleSubmit}>
                             <label>Title</label>
                             <Form.Control
                                 className="form_field"
                                 name="name"
+                                onChange={handleTitleChange}
                                 type="text"
                                 autoComplete="off"
                             />
                             <label>Content</label>
-                            <TextareaAutosize onChange={handleChange} defaultValue={data} name="textarea" />
+                            <TextareaAutosize onChange={handleContentChange} name="textarea" />
                             <Button
                                 className="btn"
                                 variant="primary"

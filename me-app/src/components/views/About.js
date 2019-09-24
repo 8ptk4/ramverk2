@@ -1,10 +1,7 @@
-import React, { useState } from "react";
-import get from "../../assets/images/putte.png"; 
+import React, {useState} from 'react';
 import axios from 'axios';
 import Markdown from 'markdown-to-jsx';
-import { render } from 'react-dom';
 import styled from 'styled-components';
-import TextareaAutosize from 'react-autosize-textarea';
 
 const TextareaStyle = styled.div`
     textarea {
@@ -25,18 +22,15 @@ const ButtonStyle = styled.button`
 const About = (props) => {
     React.useEffect(() => {
         props.updateTitle('About');
+        fetchData();
     }, [props.updateTitle]);
 
 
     const [data, setData] = useState(' ');
-    const [newData, setNewData] = useState(' ');
-
-    const query = new URLSearchParams(props.location.search);
-    const param = query.get('edit');
 
     async function fetchData() {
         try {
-            const response = await axios.get('https://me-api.putte-karlsson.me/pages/about');
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/reports/week/about`);
             const aboutContent = response.data.about;
 
             setData(aboutContent);
@@ -45,36 +39,9 @@ const About = (props) => {
         }
     }
 
-    function handleChange(e) {
-        const newData = e.target.value;
-
-        setNewData(newData);
-    };
-
-    function handleSubmit(e) {
-        e.preventDefault();
-
-        axios.post('https://me-api.putte-karlsson.me/pages/about', { data: newData }, {
-            headers: { 'x-access-token': localStorage.getItem('token') }
-        }).then(res => console.log(res)).catch(e => console.log(e.response));
-
-    };
-
-    fetchData();
-
     return (
         <>
-            { param === "yes" ?
-                <TextareaStyle>
-                    <form className="row" onSubmit={handleSubmit}>
-                        <TextareaAutosize onChange={handleChange} defaultValue={data} name="textarea" />
-                        <input type="submit" value="Save" />
-                    </form>
-                </TextareaStyle>
-                
-            :  
-                <Markdown>{data}</Markdown>  
-            }
+            <Markdown>{data}</Markdown>  
         </>
     );
 };
