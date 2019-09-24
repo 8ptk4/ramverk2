@@ -124,12 +124,16 @@ const NavigationBar = ({history}) => {
                                     <span /> About    
                                 </Nav.Link>
                             </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link href="/reports/create">
-                                    <FontAwesomeIcon icon={faAddressCard} />
-                                    <span /> Create
-                                </Nav.Link>
-                            </Nav.Item>
+                                {token ? 
+                                <Nav.Item>
+                                    <Nav.Link href="/reports/create">
+                                        <FontAwesomeIcon icon={faAddressCard} />
+                                        <span /> Create
+                                    </Nav.Link>
+                                </Nav.Item>
+                                    : 
+                                    ""
+                                }
                             <NavDropdown title={<span><FontAwesomeIcon icon={faListAlt} /> Reports</span>} id="basic-nav-dropdown">
                                 {items.map(item => (
                                     <li key={item.title}>
