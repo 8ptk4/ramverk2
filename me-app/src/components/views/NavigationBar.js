@@ -101,12 +101,11 @@ const NavigationBar = ({history}) => {
     const fetchItems = async () => {
         const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/titles`);
         const items = await response.data;
-
-        setItems(items.items);
+  
+        setItems(items.data);
     };
 
 
-    console.log(items);
     return (
         <>
             <Styles>
