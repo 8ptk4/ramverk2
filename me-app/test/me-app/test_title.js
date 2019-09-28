@@ -5,8 +5,7 @@ const By = require("selenium-webdriver").By;
 
 let browser;
 
-// Test Suite
-test.describe("React App", function() {
+test.describe("Me Application Title", function() {
     test.beforeEach(function(done) {
         this.timeout(20000);
         browser = new webdriver.Builder().
@@ -21,10 +20,9 @@ test.describe("React App", function() {
         done();
     });
 
-    // Test Case
-    test.it("Test Index", function(done) {
+    test.it("Test application title so it matches Me Application", function(done) {
         browser.getTitle().then(function(title) {
-            assert.equal(title, "React App");
+            assert.equal(title, "Me Application");
         });
 
         done();

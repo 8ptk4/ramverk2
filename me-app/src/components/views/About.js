@@ -19,12 +19,14 @@ const ButtonStyle = styled.button`
     float: right;
 `;
 
+
 const About = (props) => {
     React.useEffect(() => {
         props.updateTitle('About');
         fetchData();
     }, [props.updateTitle]);
 
+    //process.env.REACT_APP_TITLE="About";
 
     const [data, setData] = useState(' ');
 

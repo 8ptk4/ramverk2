@@ -7,6 +7,7 @@ import validateAuth from './ValidateAuth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import useLongPress from './testtest';
+import DocumentTitle from 'react-document-title';
 
 const Section = styled.section`
     color: red;
@@ -404,6 +405,7 @@ const Register = ({updateTitle}) => {
                         </DatePicker>
                         
                         <Button 
+                            id="button"
                             variant="primary" 
                             type="submit"
                             disabled={isSubmitting}
