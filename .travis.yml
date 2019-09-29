@@ -1,7 +1,7 @@
 language: node_js
 
 addons:
-  firefox: latest
+  firefox: "69.0.1"
 
 node_js:
     - "10"

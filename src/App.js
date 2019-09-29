@@ -45,8 +45,6 @@ const App = () => {
                                         <Route path="/" exact render={props => <About {...props} updateTitle={setTitle} />}/>
                                         <Route path="/about" render={props=><About {...props} updateTitle={setTitle} />}/>
                                         <Route path="/reports/create" render={props => <CreateReport {...props} updateTitle={setTitle} />} />
-                                        {/*<Route path="/reports/week/1" render={props => <Reports {...props} updateTitle={setTitle} />}/>*/}
-                                        {/*<Route path="/reports/week/2" render={props => <Inspiration {...props} updateTitle={setTitle} />} />*/}
                                         <Route path="/register" render={props => <Register {...props} updateTitle={setTitle} />}/>
                                         <Route path="/reports/edit/:title" render={props => <EditReport {...props} updateTitle={setTitle} />}/>
                                         <Route path="/reports/week/:title" render={props => <ShowReports {...props} updateTitle={setTitle} />} />

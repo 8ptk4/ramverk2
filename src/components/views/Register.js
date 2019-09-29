@@ -7,7 +7,6 @@ import validateAuth from './ValidateAuth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import useLongPress from './testtest';
-import DocumentTitle from 'react-document-title';
 
 const Section = styled.section`
     color: red;
@@ -294,7 +293,7 @@ const Register = ({updateTitle}) => {
     const longPressHandlersPlusDay = useLongPress(handleLongPress(1, setDay));
     const longPressHandlersMinusDay = useLongPress(handleLongPress(-1, setDay));
 
-    return (
+    return (    
         <>
             <Section>
                 <div className="container">
