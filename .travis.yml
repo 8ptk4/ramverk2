@@ -8,6 +8,10 @@ node_js:
 
 sudo: false
 
+env:
+  global:
+    - MOZ_HEADLESS=1
+
 git:
     submodules: false
 
