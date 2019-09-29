@@ -11,7 +11,7 @@ test.describe("Register Heading", function() {
         browser = new webdriver.Builder().
             withCapabilities(webdriver.Capabilities.firefox()).build();
 
-        browser.get("http://localhost:3000/register");
+        browser.get("http://127.0.0.1:3000/register");
         done();
     });
 

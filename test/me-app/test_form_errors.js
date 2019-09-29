@@ -1,7 +1,7 @@
 const assert = require("assert");
 const test = require("selenium-webdriver/testing");
 const webdriver = require("selenium-webdriver");
-const By = require("selenium-webdriver").By;
+const By = webdriver.By;
 
 let browser;
 
@@ -11,7 +11,7 @@ test.describe("Register form errors", function() {
         browser = new webdriver.Builder().
             withCapabilities(webdriver.Capabilities.firefox()).build();
 
-        browser.get("http://localhost:3000/register");
+        browser.get("http://127.0.0.1:3000/register");
         done();
     });
 
