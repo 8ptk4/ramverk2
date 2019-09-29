@@ -31,7 +31,7 @@ test.describe('Register form errors', function() {
   test.it('Check that the button is displayed Submit', function(done) {
     browser.findElement(By.id('button')).then(function(element) {
       element.getText().then(function(text) {
-        assert.equal(text, 'Submit');
+        assert.assertEqual(text, 'Submit');
       });
     });
     done();
@@ -46,7 +46,7 @@ test.describe('Register form errors', function() {
         )
         .then(function(element) {
           element.getText().then(function(text) {
-            assert.equal(text, 'Required Name');
+            assert.strictEqual(text, 'Required Name');
           });
         });
       done();
@@ -57,7 +57,7 @@ test.describe('Register form errors', function() {
         )
         .then(function(element) {
           element.getText().then(function(text) {
-            assert.equal(text, 'Required Email');
+            assert.strictEqual(text, 'Required Email');
           });
         });
       done();
@@ -68,7 +68,7 @@ test.describe('Register form errors', function() {
         )
         .then(function(element) {
           element.getText().then(function(text) {
-            assert.equal(text, 'Required Password');
+            assert.strictEqual(text, 'Required Password');
           });
         });
       done();
