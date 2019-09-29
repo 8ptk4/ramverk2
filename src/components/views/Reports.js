@@ -9,19 +9,19 @@ const Section = styled.section`
     width: 350px;
     float: right;
   }
-  
+
   .section-wrapper {
     padding: 10px;
     color: grey;
   }
 
   h1 {
-    color: #E65950;
+    color: #e65950;
   }
 
   blockquote {
     border-left: 7px solid lightgrey;
-    background: rgba(204,204,204,0.2);
+    background: rgba(204, 204, 204, 0.2);
   }
 
   blockquote p {
@@ -29,24 +29,23 @@ const Section = styled.section`
   }
 `;
 
-
-
-const Reports = (props) => {
+const Reports = props => {
   React.useEffect(() => {
     props.updateTitle(props.match.params.title);
     fetchData();
-  }, );
+  });
 
   const [data, setData] = useState(' ');
 
   async function fetchData() {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/reports/week/${props.match.params.title}`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/reports/week/${props.match.params.title}`
+      );
       const aboutContent = response.data.about;
 
       setData(aboutContent);
-    } catch (e) {
-    }
+    } catch (e) {}
   }
   console.log(data);
   return (
@@ -57,7 +56,5 @@ const Reports = (props) => {
     </>
   );
 };
-
-
 
 export default Reports;

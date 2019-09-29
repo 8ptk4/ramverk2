@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState, useEffect } from 'react';
+import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCashRegister,
   faHome,
@@ -9,13 +9,13 @@ import {
   faListAlt,
   faSignInAlt,
   faSignOutAlt
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons';
 //import { faReact } from '@fortawesome/free-brands-svg-icons';
-import Popup from "reactjs-popup";
-import Signin from "./Signin";
-import LoggedIn from "./LoggedIn";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import Popup from 'reactjs-popup';
+import Signin from './Signin';
+import LoggedIn from './LoggedIn';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Styles = styled.div`
     .navbar {
@@ -84,7 +84,7 @@ const NavigationBar = ({ history }) => {
   }, []);
 
   const [token, setToken] = useState(null);
-  const storage = localStorage.getItem("token");
+  const storage = localStorage.getItem('token');
 
   useEffect(() => {
     if (storage === null || storage.length === 0) {
@@ -130,7 +130,7 @@ const NavigationBar = ({ history }) => {
                   </Nav.Link>
                 </Nav.Item>
               ) : (
-                ""
+                ''
               )}
               <NavDropdown
                 title={
@@ -143,14 +143,14 @@ const NavigationBar = ({ history }) => {
                 {items.map(item => (
                   <li key={item.title}>
                     <Link to={`/reports/week/${item.title}`}>
-                      {" "}
-                      {item.title}{" "}
+                      {' '}
+                      {item.title}{' '}
                     </Link>
                   </li>
                 ))}
               </NavDropdown>
               {token ? (
-                ""
+                ''
               ) : (
                 <Nav.Item>
                   <Nav.Link href="/register">
@@ -163,7 +163,7 @@ const NavigationBar = ({ history }) => {
                 <Nav.Item>
                   <Nav.Link
                     onClick={() => {
-                      localStorage.removeItem("token");
+                      localStorage.removeItem('token');
                       setToken(null);
                     }}
                   >
@@ -197,7 +197,7 @@ const NavigationBar = ({ history }) => {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        {token ? <LoggedIn /> : ""}
+        {token ? <LoggedIn /> : ''}
       </Styles>
     </>
   );
