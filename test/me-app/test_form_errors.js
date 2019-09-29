@@ -31,7 +31,7 @@ test.describe('Register form errors', function() {
   test.it('Check that the button is displayed Submit', function(done) {
     browser.findElement(By.id('button')).then(function(element) {
       element.getText().then(function(text) {
-        assert.assertEqual(text, 'Submit');
+        assert.equal(text, 'Submit');
       });
     });
     done();
