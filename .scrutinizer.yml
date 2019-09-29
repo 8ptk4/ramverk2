@@ -1,5 +1,5 @@
 filter:
-  excluded_paths: [test/*, .nyc_output/, coverage]
+  excluded_paths: ['test/*', '.nyc_output/', 'coverage']
 
   build:
   nodes:
