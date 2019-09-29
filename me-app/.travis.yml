@@ -8,6 +8,9 @@ sudo: false
 git:
     submodules: false
 
+before_install:
+  - cd me-app
+
 before_script:
     - npm install
 
