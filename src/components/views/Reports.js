@@ -35,7 +35,7 @@ const Reports = (props) => {
   React.useEffect(() => {
     props.updateTitle(props.match.params.title);
     fetchData();
-  }, [props.match.params.title]);
+  }, );
 
   const [data, setData] = useState(' ');
 

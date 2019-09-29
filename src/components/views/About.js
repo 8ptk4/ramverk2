@@ -1,32 +1,12 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import Markdown from 'markdown-to-jsx';
-import styled from 'styled-components';
-
-const TextareaStyle = styled.div`
-    textarea {
-        width: 100%;
-        background-color: rgba(0,0,0,.1);;
-        border: 1px solid red;
-        padding: 10px;
-        outline: none;
-        box-sizing: border-box;
-        resize: none;
-    }
-`;
-
-const ButtonStyle = styled.button`
-    float: right;
-`;
-
 
 const About = (props) => {
     React.useEffect(() => {
         props.updateTitle('About');
         fetchData();
-    }, [props.updateTitle]);
-
-    //process.env.REACT_APP_TITLE="About";
+    }, );
 
     const [data, setData] = useState(' ');
 

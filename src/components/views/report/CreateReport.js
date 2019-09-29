@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import TextareaAutosize from 'react-autosize-textarea';
 import { Row, Col, Form } from 'react-bootstrap';
@@ -60,20 +60,12 @@ const Section = styled.section`
     }
 `;
 
-const ReportList = styled.div`
-  display: flex;
-  flex-direction: column;
-  span {
-      display: block;
-  }
-`;
-
 
 
 const CreateReport = (props) => {
     React.useEffect(() => {
         props.updateTitle('Create report');
-    }, [props.updateTitle]);
+    },);
 
     const INITIAL_VALUES = {
         title: "",

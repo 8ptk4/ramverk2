@@ -66,7 +66,7 @@ const EditReport = (props) => {
     useEffect(() => {
         props.updateTitle('Edit report');
         fetchItems();
-    }, [props, props.match.params.title]);
+    },);
 
     const INITIAL_VALUES = {
         title: "",
@@ -98,7 +98,7 @@ const EditReport = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-  
+        
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/reports/`, 
         { 
             title: INITIAL_VALUES.title === "" ? Title : INITIAL_VALUES.title,
