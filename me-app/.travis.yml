@@ -8,10 +8,8 @@ sudo: false
 git:
     submodules: false
 
-before_script:
+script:
     - cd me-app
     - npm install
-
-script:
     - npm run build
     - npm run test
