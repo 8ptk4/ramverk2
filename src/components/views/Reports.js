@@ -5,9 +5,15 @@ import Markdown from 'markdown-to-jsx';
 
 const Section = styled.section`
   img {
-    border: 2px solid grey;
-    width: 350px;
-    float: right;
+    border: none !important;
+  }
+
+  .image_big {
+    img {
+      border: 2px solid grey !important;
+      width: 350px;
+      float: right;
+    }
   }
 
   .section-wrapper {
@@ -21,10 +27,7 @@ const Section = styled.section`
 
   blockquote {
     border-left: 7px solid lightgrey;
-    background: rgba(204, 204, 204, 0.2);
-  }
-
-  blockquote p {
+    background: rgba(204, 204, 204, 0.5);
     padding: 10px;
   }
 `;
