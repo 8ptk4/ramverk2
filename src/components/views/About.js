@@ -13,10 +13,11 @@ const About = props => {
   async function fetchData() {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/reports/week/about`
+        `${process.env.REACT_APP_BACKEND_URL}/reports/week/About`
       );
+      console.log(response);
       const aboutContent = response.data.about;
-
+      console.log(aboutContent);
       setData(aboutContent);
     } catch (e) {
       console.log(e);
