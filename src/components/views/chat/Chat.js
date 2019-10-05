@@ -19,13 +19,7 @@ const ChatWrapper = styled.div`
 
     overflow: auto;
   }
-
-  .test {
-    padding: 10px;
-  }
 `;
-
-const ChatBox = styled.div``;
 
 const MessageBox = styled.div`
   width: 80%;
@@ -33,6 +27,12 @@ const MessageBox = styled.div`
   .text-field {
     width: 100%;
   }
+`;
+
+const ChatName = styled.div`
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
 `;
 
 const ButtonBox = styled.div`
@@ -60,6 +60,7 @@ let socket;
 const Chat = ({ location }) => {
   const [name, setName] = useState('');
   const [room, setRoom] = useState('main');
+
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
 
@@ -80,9 +81,7 @@ const Chat = ({ location }) => {
     socket.emit('join', { name, room }, () => {});
 
     socket.on('message', message => {
-      //setMessages(messages => messages.push(message));
       setMessages(oldMessages => oldMessages.concat([message]));
-      //setMessages([...messages, message]);
     });
 
     return () => {
@@ -90,42 +89,46 @@ const Chat = ({ location }) => {
       socket.off();
     };
   };
-  /*
-  React.useEffect(() => {
-    socket.on('message', message => {
-      setMessages([...messages, message]);
-    });
-  }, [message]);
-  */
+
   const sendMessage = event => {
     event.preventDefault();
     if (message) {
       socket.emit('sendMessage', message, () => setMessage(''));
     }
   };
-  console.log(messages);
+
   return (
     <>
       <Chatter>
         <Modal
-          size="lg"
+          size="md"
           aria-labelledby="contained-modal-title-vcenter"
           centered
           show={show}
           onHide={handleShow}
         >
-          <TextField
-            id="standard-name"
-            label="Select a chatname"
-            className="text-field"
-            onChange={event => setName(event.target.value)}
-            margin="normal"
-          />
-          <Button onClick={chatConnect}>Save Changes</Button>
+          <ChatName>
+            <TextField
+              id="standard-name"
+              label="Select a chatname"
+              className="text-field"
+              autoComplete="off"
+              onChange={event => setName(event.target.value)}
+              margin="normal"
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              className="button"
+              onClick={chatConnect}
+            >
+              Enter Chat
+            </Button>
+          </ChatName>
         </Modal>
         <ChatWrapper>
           <ScrollToBottom className="messages">
-            <Messages className="test" messages={messages} name={name} />
+            <Messages messages={messages} name={name} />
           </ScrollToBottom>
         </ChatWrapper>
         <ChatWrapper>
@@ -135,6 +138,7 @@ const Chat = ({ location }) => {
               label="Send a message"
               className="text-field"
               value={message}
+              autoComplete="off"
               onChange={event => setMessage(event.target.value)}
               onKeyPress={event =>
                 event.key === 'Enter' ? sendMessage(event) : null
