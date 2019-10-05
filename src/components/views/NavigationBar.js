@@ -122,6 +122,12 @@ const NavigationBar = ({ history }) => {
                   <span /> About
                 </Nav.Link>
               </Nav.Item>
+              <Nav.Item>
+                <Nav.Link href="/chat">
+                  <FontAwesomeIcon icon={faAddressCard} />
+                  <span /> Chat
+                </Nav.Link>
+              </Nav.Item>
               {token ? (
                 <Nav.Item>
                   <Nav.Link href="/reports/create">

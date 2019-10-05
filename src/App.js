@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import About from './components/views/About';
+import Chat from './components/views/chat/Chat';
 import Register from './components/views/Register';
 import NoMatch from './components/views/NoMatch';
 import styled from 'styled-components';
@@ -36,47 +37,32 @@ const App = () => {
         <Main className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1>{title}</h1>
               <hr />
               <Switch>
+                <Route path="/" exact render={props => <About {...props} />} />
                 <Route
-                  path="/"
+                  path="/chat"
                   exact
-                  render={props => <About {...props} updateTitle={setTitle} />}
+                  render={props => <Chat {...props} />}
                 />
-                <Route
-                  path="/about"
-                  render={props => <About {...props} updateTitle={setTitle} />}
-                />
+                <Route path="/about" render={props => <About {...props} />} />
                 <Route
                   path="/reports/create"
-                  render={props => (
-                    <CreateReport {...props} updateTitle={setTitle} />
-                  )}
+                  render={props => <CreateReport {...props} />}
                 />
                 <Route
                   path="/register"
-                  render={props => (
-                    <Register {...props} updateTitle={setTitle} />
-                  )}
+                  render={props => <Register {...props} />}
                 />
                 <Route
                   path="/reports/edit/:title"
-                  render={props => (
-                    <EditReport {...props} updateTitle={setTitle} />
-                  )}
+                  render={props => <EditReport {...props} />}
                 />
                 <Route
                   path="/reports/week/:title"
-                  render={props => (
-                    <ShowReports {...props} updateTitle={setTitle} />
-                  )}
+                  render={props => <ShowReports {...props} />}
                 />
-                <Route
-                  render={props => (
-                    <NoMatch {...props} updateTitle={setTitle} />
-                  )}
-                />
+                <Route render={props => <NoMatch {...props} />} />
               </Switch>
               <hr />
             </div>

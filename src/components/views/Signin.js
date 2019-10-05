@@ -59,7 +59,6 @@ const Signin = props => {
       })
         .then(response => {
           setIsLoading(true);
-          console.log('Response: ', response);
           localStorage.setItem('token', response.data.hemlighet);
           localStorage.setItem('username', response.data.username);
           props.closeMe();
@@ -67,7 +66,6 @@ const Signin = props => {
         })
         .catch(error => {
           setIsLoading(false);
-          console.log(error.response);
           if (error.response) {
             console.log('Hej');
           } else if (error.request) {

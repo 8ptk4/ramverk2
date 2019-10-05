@@ -4,7 +4,6 @@ import Markdown from 'markdown-to-jsx';
 
 const About = props => {
   React.useEffect(() => {
-    props.updateTitle('About');
     fetchData();
   });
 

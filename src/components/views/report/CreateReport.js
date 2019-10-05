@@ -61,10 +61,6 @@ const Section = styled.section`
 `;
 
 const CreateReport = props => {
-  React.useEffect(() => {
-    props.updateTitle('Create report');
-  });
-
   const INITIAL_VALUES = {
     title: '',
     content: ''

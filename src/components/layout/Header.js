@@ -42,6 +42,7 @@ const HeaderStyle = styled.header`
 */
 const SiteLogo = styled.p`
   font-size: 8em;
+
   text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9,
     0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
     0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2),
@@ -52,6 +53,10 @@ const SiteLogo = styled.p`
     .title {
       font-size: 3em;
     }
+  }
+
+  &:first-letter {
+    text-transform: uppercase !important;
   }
 `;
 
@@ -120,10 +125,19 @@ const WaveAnimation = styled.g`
 
 const Header = props => (
   <>
+    {console.log(
+      props.location.pathname.split('/')[
+        props.location.pathname.split('/').length - 1
+      ]
+    )}
     <HeaderStyle>
       <NavStyle>
         <NavigationBar history={props.history} />
-        <SiteLogo className="title">Patrik Karlsson</SiteLogo>
+        <SiteLogo className="title">
+          {props.location.pathname.split('/')[
+            props.location.pathname.split('/').length - 1
+          ] || 'Patrik Karlsson'}
+        </SiteLogo>
       </NavStyle>
       <div>
         <Waves

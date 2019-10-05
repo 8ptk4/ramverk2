@@ -103,11 +103,7 @@ const INITIAL_STATE = {
   day: ''
 };
 
-const Register = ({ updateTitle }) => {
-  React.useEffect(() => {
-    updateTitle('Register');
-  }, [updateTitle]);
-
+const Register = () => {
   /**
    * Get todays month number.
    *

@@ -34,7 +34,6 @@ const Section = styled.section`
 
 const Reports = props => {
   React.useEffect(() => {
-    props.updateTitle(props.match.params.title);
     fetchData();
   });
 

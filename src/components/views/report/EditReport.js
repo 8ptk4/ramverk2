@@ -62,7 +62,6 @@ const Section = styled.section`
 
 const EditReport = props => {
   useEffect(() => {
-    props.updateTitle('Edit report');
     fetchItems();
   });
 
