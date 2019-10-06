@@ -22,9 +22,9 @@ test.describe('Register Heading', function() {
   });
 
   test.it('Test that register heading matches Register', function(done) {
-    browser.findElement(By.css('h1')).then(function(element) {
+    browser.findElement(By.className('title')).then(function(element) {
       element.getText().then(function(text) {
-        assert.equal(text, 'Register');
+        assert.equal(text, 'register');
       });
     });
 
