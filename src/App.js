@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/layout/Header';
@@ -29,7 +29,6 @@ const Main = styled.main`
 `;
 
 const App = () => {
-  const [title, setTitle] = useState('Default');
   return (
     <>
       <BrowserRouter>

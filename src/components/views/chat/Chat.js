@@ -56,10 +56,10 @@ const Chatter = styled.div`
 `;
 
 let socket;
+let room = 'main';
 
 const Chat = ({ location }) => {
   const [name, setName] = useState('');
-  const [room, setRoom] = useState('main');
 
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
