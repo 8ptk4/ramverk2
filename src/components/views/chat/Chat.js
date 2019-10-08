@@ -60,13 +60,11 @@ let room = 'main';
 
 const Chat = ({ location }) => {
   const [name, setName] = useState('');
-
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
-
   const [show, setShow] = useState(true);
 
-  const ENDPOINT = 'localhost:5000';
+  const ENDPOINT = `${process.env.REACT_APP_BACKEND_CHAT_URL}`;
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -108,22 +106,24 @@ const Chat = ({ location }) => {
           onHide={handleShow}
         >
           <ChatName>
-            <TextField
-              id="standard-name"
-              label="Select a chatname"
-              className="text-field"
-              autoComplete="off"
-              onChange={event => setName(event.target.value)}
-              margin="normal"
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              className="button"
-              onClick={chatConnect}
-            >
-              Enter Chat
-            </Button>
+            <form>
+              <TextField
+                id="chatname-input"
+                label="Select a chatname"
+                className="text-field"
+                autoComplete="off"
+                onChange={event => setName(event.target.value)}
+                margin="normal"
+              />
+              <Button
+                variant="contained"
+                color="primary"
+                className="button"
+                onClick={chatConnect}
+              >
+                Enter Chat
+              </Button>
+            </form>
           </ChatName>
         </Modal>
         <ChatWrapper>

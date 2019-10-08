@@ -52,8 +52,6 @@ const Message = ({ message: { user, text, time }, name }) => {
     isSentByCurrentUser = true;
   }
 
-  console.log(user);
-
   return isSentByCurrentUser ? (
     <Wrapper>
       <Row className="row">
