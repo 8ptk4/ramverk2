@@ -11,7 +11,7 @@ test.describe('Register form errors', function() {
       .withCapabilities(webdriver.Capabilities.firefox())
       .build();
 
-    browser.get('http://127.0.0.1:3000/register');
+    browser.get('http://localhost:3000/register');
     done();
   });
 
@@ -44,13 +44,6 @@ test.describe('Register form errors', function() {
   test.it(
     'Check that all fields display proper error messages when clicking submit',
     function(done) {
-      browser.wait(() => {
-        return browser
-          .executeScript('return document.readyState')
-          .then(state => {
-            return state === 'complete';
-          });
-      });
       browser
         .findElement(
           By.xpath('/html/body/div/main/div/div/section/div/form/div[1]/p[1]')
