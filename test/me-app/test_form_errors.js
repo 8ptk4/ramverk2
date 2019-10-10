@@ -7,7 +7,6 @@ let browser;
 
 test.describe('Register form errors', function() {
   test.beforeEach(function(done) {
-    this.timeout(20000);
     browser = new webdriver.Builder()
       .withCapabilities(webdriver.Capabilities.firefox())
       .build();
@@ -29,6 +28,11 @@ test.describe('Register form errors', function() {
   });
 
   test.it('Check that the button is displayed Submit', function(done) {
+    browser.wait(() => {
+      return browser.executeScript('return document.readyState').then(state => {
+        return state === 'complete';
+      });
+    });
     browser.findElement(By.id('button')).then(function(element) {
       element.getText().then(function(text) {
         assert.equal(text, 'Submit');
@@ -40,6 +44,13 @@ test.describe('Register form errors', function() {
   test.it(
     'Check that all fields display proper error messages when clicking submit',
     function(done) {
+      browser.wait(() => {
+        return browser
+          .executeScript('return document.readyState')
+          .then(state => {
+            return state === 'complete';
+          });
+      });
       browser
         .findElement(
           By.xpath('/html/body/div/main/div/div/section/div/form/div[1]/p[1]')
